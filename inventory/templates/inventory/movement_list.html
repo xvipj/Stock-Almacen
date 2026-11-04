@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Inventario · Stock Almacén{% endblock %}
+{% block eyebrow %}Inventario{% endblock %}
+{% block page_title %}Movimientos de stock{% endblock %}
+{% block page_subtitle %}Historial completo de entradas, salidas y ajustes.{% endblock %}
+
+{% block header_actions %}
+    <a class="btn btn-primary" href="{% url 'inventory:movement_create' %}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        Registrar movimiento
+    </a>
+{% endblock %}
+
+{% block content %}
+<section class="card">
+    <div class="card-header card-header--stacked">
+        <div>
+            <h2>Historial</h2>
+            <p>{{ total_resultados }} movimiento{{ total_resultados|pluralize:"s" }} encontrado{{ total_resultados|pluralize:"s" }}.</p>
+        </div>
+
+        <form method="get" class="filters filters--movements">
+            <div class="filter-field">
+                <label for="{{ filtro.desde.id_for_label }}">Desde</label>
+                {{ filtro.desde }}
+            </div>
+            <div class="filter-field">
+                <label for="{{ filtro.hasta.id_for_label }}">Hasta</label>
+                {{ filtro.hasta }}
+            </div>
+            <div class="filter-field">
+                <label for="{{ filtro.tipo.id_for_label }}">Tipo</label>
+                {{ filtro.tipo }}
+            </div>
+            <div class="filter-field filter-field--wide">
+                <label for="{{ filtro.producto.id_for_label }}">Producto</label>
+                {{ filtro.producto }}
+            </div>
+            <div class="filter-actions">
+                <button type="submit" class="btn btn-secondary">Filtrar</button>
+                {% if filtros_activos %}
+                    <a class="btn btn-ghost" href="{% url 'inventory:movement_list' %}">Limpiar</a>
+                {% endif %}
+            </div>
+        </form>
+
+        {% if filtro.errors %}
+            <div class="form-alert" role="alert">
+                {% for error in filtro.non_field_errors %}{{ error }}{% endfor %}
+                {% for field in filtro %}{% for error in field.errors %}{{ error }}{% endfor %}{% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    {% if movimientos %}
+        <div class="table-wrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Producto</th>
+                        <th>Tipo</th>
+                        <th class="num">Cantidad</th>
+                        <th>Nota</th>
+                        <th>Usuario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movimiento in movimientos %}
+                        <tr>
+                            <td class="cell-date">
+                                {{ movimiento.fecha|date:"d M, Y" }}
+                                <span class="cell-sub">{{ movimiento.fecha|date:"H:i" }}</span>
+                            </td>
+                            <td>
+                                <a class="cell-title" href="{% url 'catalog:product_detail' movimiento.variante.producto_id %}">
+                                    {{ movimiento.variante.producto.nombre }}
+                                </a>
+                                <span class="cell-sub">{{ movimiento.variante.producto.sku }} · {{ movimiento.variante.talla }} / {{ movimiento.variante.color }}</span>
+                            </td>
+                            <td><span class="badge badge--{{ movimiento.tipo|lower }}">{{ movimiento.get_tipo_display }}</span></td>
+                            <td class="num">
+                                <span class="{% if movimiento.tipo == 'ENTRADA' %}text-success{% elif movimiento.tipo == 'SALIDA' %}text-danger{% else %}text-accent{% endif %}">
+                                    {{ movimiento.cantidad_con_signo }}
+                                </span>
+                            </td>
+                            <td class="cell-note">{{ movimiento.nota|default:"—" }}</td>
+                            <td>{{ movimiento.usuario.get_username }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if is_paginated %}
+            <nav class="pagination" aria-label="Paginación de movimientos">
+                <span class="pagination-info">Página {{ page_obj.number }} de {{ paginator.num_pages }}</span>
+                <div class="pagination-links">
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-secondary btn-sm" href="{% querystring page=page_obj.previous_page_number %}">Anterior</a>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-secondary btn-sm" href="{% querystring page=page_obj.next_page_number %}">Siguiente</a>
+                    {% endif %}
+                </div>
+            </nav>
+        {% endif %}
+    {% else %}
+        <div class="empty-state">
+            <span class="empty-icon">↕</span>
+            <h3>No hay movimientos para mostrar</h3>
+            {% if filtros_activos %}
+                <p>Prueba con otros filtros o consulta todo el historial.</p>
+                <a class="btn btn-secondary btn-sm" href="{% url 'inventory:movement_list' %}">Limpiar filtros</a>
+            {% else %}
+                <p>Registra la primera entrada para comenzar a controlar el stock.</p>
+                <a class="btn btn-primary btn-sm" href="{% url 'inventory:movement_create' %}">Registrar movimiento</a>
+            {% endif %}
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Registrar movimiento · Stock Almacén{% endblock %}
+{% block eyebrow %}Inventario / Nuevo{% endblock %}
+{% block page_title %}Registrar movimiento{% endblock %}
+{% block page_subtitle %}Suma, resta o corrige existencias de una variante.{% endblock %}
+
+{% block header_actions %}
+    <a class="btn btn-secondary" href="{% url 'inventory:movement_list' %}">Volver al historial</a>
+{% endblock %}
+
+{% block content %}
+<div class="form-layout">
+    <form method="post" class="card form-card">
+        {% csrf_token %}
+
+        <div class="card-header">
+            <div>
+                <h2>Datos del movimiento</h2>
+                <p>El stock actual está protegido: solo cambia al registrar movimientos.</p>
+            </div>
+        </div>
+
+        <div class="card-body">
+            {% include "partials/form_fields.html" %}
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Registrar movimiento</button>
+            <a class="btn btn-ghost" href="{% url 'inventory:movement_list' %}">Cancelar</a>
+        </div>
+    </form>
+
+    <aside class="side-stack">
+        {% if variante_seleccionada %}
+            <div class="card side-note side-note--stock">
+                <span class="side-note-label">Variante seleccionada</span>
+                <h3>{{ variante_seleccionada.producto.nombre }}</h3>
+                <p>{{ variante_seleccionada.talla }} / {{ variante_seleccionada.color }}</p>
+                <div class="stock-highlight">
+                    <strong>{{ variante_seleccionada.stock_actual }}</strong>
+                    <span>unidades en stock</span>
+                </div>
+                {% if variante_seleccionada.stock_bajo %}
+                    <span class="badge badge--warning">Stock bajo · mínimo {{ variante_seleccionada.stock_minimo }}</span>
+                {% else %}
+                    <span class="badge badge--success">Sobre el mínimo ({{ variante_seleccionada.stock_minimo }})</span>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="card side-note">
+            <h3>Cómo interpretar cada tipo</h3>
+            <ul class="rule-list">
+                <li><span class="badge badge--entrada">Entrada</span> suma unidades al stock.</li>
+                <li><span class="badge badge--salida">Salida</span> resta unidades y no permite dejar el stock en negativo.</li>
+                <li><span class="badge badge--ajuste">Ajuste</span> fija el stock exacto al número indicado (útil tras un conteo físico).</li>
+            </ul>
+        </div>
+    </aside>
+</div>
+{% endblock %}

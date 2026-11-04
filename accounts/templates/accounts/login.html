@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Iniciar sesión · Stock Almacén{% endblock %}
+
+{% block layout %}
+<div class="auth-page">
+    <div class="auth-card">
+        <a class="brand brand--auth" href="{% url 'accounts:login' %}">
+            <span class="brand-mark">SA</span>
+            <span class="brand-text">
+                <strong>Stock</strong>
+                <small>Almacén</small>
+            </span>
+        </a>
+
+        <div class="auth-heading">
+            <span class="auth-kicker">Gestión de inventario</span>
+            <h1>Bienvenido de nuevo</h1>
+            <p>Ingresa con tu cuenta para administrar productos, variantes y movimientos.</p>
+        </div>
+
+        {% if form.non_field_errors %}
+            <div class="form-alert" role="alert">
+                {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+
+            <div class="field {% if form.username.errors %}has-error{% endif %}">
+                <label for="{{ form.username.id_for_label }}">Usuario</label>
+                {{ form.username }}
+                {% for error in form.username.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+            </div>
+
+            <div class="field {% if form.password.errors %}has-error{% endif %}">
+                <label for="{{ form.password.id_for_label }}">Contraseña</label>
+                {{ form.password }}
+                {% for error in form.password.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">Entrar al panel</button>
+        </form>
+
+        <p class="auth-note">
+            Acceso restringido. Los usuarios se crean desde la administración de Django.
+        </p>
+    </div>
+
+    <p class="auth-footer">Stock Almacén · Control simple, resultados claros.</p>
+</div>
+{% endblock %}

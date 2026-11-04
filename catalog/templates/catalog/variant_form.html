@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{% if es_edicion %}Editar variante{% else %}Nueva variante{% endif %} · Stock Almacén{% endblock %}
+{% block eyebrow %}Catálogo / {{ producto.nombre }}{% endblock %}
+{% block page_title %}{% if es_edicion %}Editar variante{% else %}Nueva variante{% endif %}{% endblock %}
+{% block page_subtitle %}Combinación de talla y color para {{ producto.nombre }}.{% endblock %}
+
+{% block header_actions %}
+    <a class="btn btn-secondary" href="{% url 'catalog:product_detail' producto.pk %}">Volver al producto</a>
+{% endblock %}
+
+{% block content %}
+<div class="form-layout">
+    <form method="post" class="card form-card">
+        {% csrf_token %}
+
+        <div class="card-header">
+            <div>
+                <h2>Datos de la variante</h2>
+                <p>La combinación talla + color no puede repetirse en este producto.</p>
+            </div>
+        </div>
+
+        <div class="card-body">
+            {% include "partials/form_fields.html" %}
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                {% if es_edicion %}Guardar cambios{% else %}Agregar variante{% endif %}
+            </button>
+            <a class="btn btn-ghost" href="{% url 'catalog:product_detail' producto.pk %}">Cancelar</a>
+        </div>
+    </form>
+
+    <aside class="card side-note">
+        <h3>Cómo funciona el stock</h3>
+        <p>El stock no se edita desde aquí. Se calcula sumando entradas y restando salidas desde el módulo de inventario.</p>
+        <p>Una variante se marca como <strong>stock bajo</strong> cuando su cantidad actual es menor o igual al mínimo que definas.</p>
+        <a class="link-arrow" href="{% url 'inventory:movement_create' %}?variante={% if object %}{{ object.pk }}{% endif %}">Registrar un movimiento →</a>
+    </aside>
+</div>
+{% endblock %}

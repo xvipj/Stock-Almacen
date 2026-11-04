@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Eliminar producto · Stock Almacén{% endblock %}
+{% block eyebrow %}Catálogo / Eliminar{% endblock %}
+{% block page_title %}Eliminar producto{% endblock %}
+{% block page_subtitle %}Esta acción no se puede deshacer.{% endblock %}
+
+{% block content %}
+<section class="card danger-card">
+    <div class="card-body">
+        <span class="danger-icon" aria-hidden="true">!</span>
+        <h2>¿Eliminar “{{ object.nombre }}”?</h2>
+        <p class="danger-text">
+            Se eliminarán también sus {{ object.variantes.all|length }} variante{{ object.variantes.all|length|pluralize:"s" }}
+            y todo el historial de movimientos asociado.
+        </p>
+
+        <div class="object-preview">
+            <strong>{{ object.nombre }}</strong>
+            <span>{{ object.sku }} · {{ object.categoria.nombre }}</span>
+        </div>
+
+        <form method="post" class="confirm-actions">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Sí, eliminar producto</button>
+            <a class="btn btn-secondary" href="{{ object.get_absolute_url }}">Cancelar</a>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Eliminar variante · Stock Almacén{% endblock %}
+{% block eyebrow %}Catálogo / {{ producto.nombre }}{% endblock %}
+{% block page_title %}Eliminar variante{% endblock %}
+{% block page_subtitle %}Esta acción no se puede deshacer.{% endblock %}
+
+{% block content %}
+<section class="card danger-card">
+    <div class="card-body">
+        <span class="danger-icon" aria-hidden="true">!</span>
+        <h2>¿Eliminar la variante {{ object.talla }} / {{ object.color }}?</h2>
+        <p class="danger-text">
+            También se eliminarán sus {{ object.movimientos.count }} movimiento{{ object.movimientos.count|pluralize:"s" }}
+            de inventario.
+        </p>
+
+        <div class="object-preview">
+            <strong>{{ producto.nombre }}</strong>
+            <span>Talla {{ object.talla }} · {{ object.color }}</span>
+        </div>
+
+        <form method="post" class="confirm-actions">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Sí, eliminar variante</button>
+            <a class="btn btn-secondary" href="{% url 'catalog:product_detail' producto.pk %}">Cancelar</a>
+        </form>
+    </div>
+</section>
+{% endblock %}

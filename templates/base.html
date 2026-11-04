@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Stock Almacén: gestión simple de inventario de ropa.">
+    <title>{% block title %}Stock Almacén{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+<body>
+{% block layout %}
+<div class="app-shell">
+    <aside class="sidebar">
+        <a class="brand" href="{% url 'dashboard:home' %}">
+            <span class="brand-mark">SA</span>
+            <span class="brand-text">
+                <strong>Stock</strong>
+                <small>Almacén</small>
+            </span>
+        </a>
+
+        <nav class="nav" aria-label="Navegación principal">
+            <span class="nav-label">General</span>
+
+            <a class="nav-link {% if request.resolver_match.app_name == 'dashboard' %}is-active{% endif %}"
+               href="{% url 'dashboard:home' %}">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                <span>Dashboard</span>
+            </a>
+
+            <a class="nav-link {% if request.resolver_match.app_name == 'catalog' %}is-active{% endif %}"
+               href="{% url 'catalog:product_list' %}">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></svg>
+                <span>Catálogo</span>
+            </a>
+
+            <a class="nav-link {% if request.resolver_match.app_name == 'inventory' %}is-active{% endif %}"
+               href="{% url 'inventory:movement_list' %}">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16v12H4z"/><path d="M3 4h18v4H3zM9 12h6"/></svg>
+                <span>Inventario</span>
+            </a>
+
+            {% if user.is_staff %}
+                <span class="nav-label nav-label--spaced">Sistema</span>
+                <a class="nav-link" href="{% url 'admin:index' %}">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.2c0 4.4 3 8.4 7.5 9.8 4.5-1.4 7.5-5.4 7.5-9.8V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg>
+                    <span>Administración</span>
+                </a>
+            {% endif %}
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-chip">
+                <span class="avatar">{{ user.username|first|upper }}</span>
+                <span class="user-meta">
+                    <strong>{{ user.get_full_name|default:user.username }}</strong>
+                    <small>{{ user.username }}</small>
+                </span>
+            </div>
+            <form method="post" action="{% url 'accounts:logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-ghost btn-sm btn-full">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 8l-4 4 4 4M6 12h9"/></svg>
+                    Cerrar sesión
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <div class="main">
+        <header class="topbar">
+            <div class="topbar-heading">
+                <p class="eyebrow">{% block eyebrow %}Panel de gestión{% endblock %}</p>
+                <h1>{% block page_title %}Dashboard{% endblock %}</h1>
+                <p class="page-subtitle">{% block page_subtitle %}Resumen general de tu almacén.{% endblock %}</p>
+            </div>
+            <div class="topbar-actions">
+                {% block header_actions %}{% endblock %}
+            </div>
+        </header>
+
+        {% if messages %}
+            <div class="messages" role="status">
+                {% for message in messages %}
+                    <div class="message message--{{ message.tags|default:'info' }}">
+                        <span class="message-dot" aria-hidden="true"></span>
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="app-footer">
+            Stock Almacén · MVP de inventario con Django
+        </footer>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}{% if object %}Editar producto{% else %}Nuevo producto{% endif %} · Stock Almacén{% endblock %}
+{% block eyebrow %}Catálogo / Productos{% endblock %}
+{% block page_title %}{% if object %}Editar producto{% else %}Nuevo producto{% endif %}{% endblock %}
+{% block page_subtitle %}{% if object %}Actualiza la información de {{ object.nombre }}.{% else %}Completa los datos básicos del producto.{% endif %}{% endblock %}
+
+{% block header_actions %}
+    {% if object %}
+        <a class="btn btn-secondary" href="{{ object.get_absolute_url }}">Volver al producto</a>
+    {% else %}
+        <a class="btn btn-secondary" href="{% url 'catalog:product_list' %}">Volver al catálogo</a>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<form method="post" class="card form-card">
+    {% csrf_token %}
+
+    <div class="card-header">
+        <div>
+            <h2>Información del producto</h2>
+            <p>El SKU debe ser único. Podrás agregar variantes después de guardar.</p>
+        </div>
+    </div>
+
+    <div class="card-body">
+        {% include "partials/form_fields.html" %}
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+            {% if object %}Guardar cambios{% else %}Crear producto{% endif %}
+        </button>
+        {% if object %}
+            <a class="btn btn-ghost" href="{{ object.get_absolute_url }}">Cancelar</a>
+        {% else %}
+            <a class="btn btn-ghost" href="{% url 'catalog:product_list' %}">Cancelar</a>
+        {% endif %}
+    </div>
+</form>
+{% endblock %}

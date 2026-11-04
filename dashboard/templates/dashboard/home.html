@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard · Stock Almacén{% endblock %}
+{% block eyebrow %}Resumen general{% endblock %}
+{% block page_title %}Hola, {{ user.get_full_name|default:user.username }}{% endblock %}
+{% block page_subtitle %}Una vista rápida del estado de tu almacén.{% endblock %}
+
+{% block header_actions %}
+    <span class="cache-chip" title="Los indicadores se guardan 60 segundos en LocMemCache">
+        <span class="cache-dot"></span>
+        {% if cache_usada %}Desde caché{% else %}Datos frescos{% endif %}
+    </span>
+    <a class="btn btn-primary" href="{% url 'inventory:movement_create' %}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        Registrar movimiento
+    </a>
+{% endblock %}
+
+{% block content %}
+<section class="metrics-grid" aria-label="Indicadores">
+    <article class="metric-card">
+        <div class="metric-top">
+            <span class="metric-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></svg>
+            </span>
+            <span class="metric-trend">Catálogo</span>
+        </div>
+        <p class="metric-label">Productos activos</p>
+        <p class="metric-value">{{ total_productos }}</p>
+        <p class="metric-hint">{{ total_variantes }} variantes registradas</p>
+    </article>
+
+    <article class="metric-card">
+        <div class="metric-top">
+            <span class="metric-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16v12H4z"/><path d="M3 4h18v4H3zM9 12h6"/></svg>
+            </span>
+            <span class="metric-trend">Existencias</span>
+        </div>
+        <p class="metric-label">Unidades en stock</p>
+        <p class="metric-value">{{ total_unidades }}</p>
+        <p class="metric-hint">Calculadas desde los movimientos</p>
+    </article>
+
+    <article class="metric-card {% if total_bajos %}metric-card--alert{% else %}metric-card--ok{% endif %}">
+        <div class="metric-top">
+            <span class="metric-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5M12 17.5v.5"/></svg>
+            </span>
+            <span class="metric-trend">{% if total_bajos %}Requiere atención{% else %}Todo en orden{% endif %}</span>
+        </div>
+        <p class="metric-label">Variantes con stock bajo</p>
+        <p class="metric-value">{{ total_bajos }}</p>
+        <p class="metric-hint">En o por debajo del stock mínimo</p>
+    </article>
+</section>
+
+<div class="dashboard-grid">
+    <section class="card">
+        <div class="card-header">
+            <div>
+                <h2>Últimos movimientos</h2>
+                <p>Las 10 operaciones más recientes del almacén.</p>
+            </div>
+            <a class="link-arrow" href="{% url 'inventory:movement_list' %}">Ver historial →</a>
+        </div>
+
+        {% if movimientos %}
+            <div class="table-wrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Tipo</th>
+                            <th class="num">Cantidad</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for movimiento in movimientos %}
+                            <tr>
+                                <td>
+                                    <a class="cell-title" href="{% url 'catalog:product_detail' movimiento.producto_id %}">{{ movimiento.producto }}</a>
+                                    <span class="cell-sub">{{ movimiento.variante }}</span>
+                                </td>
+                                <td><span class="badge badge--{{ movimiento.tipo|lower }}">{{ movimiento.tipo_display }}</span></td>
+                                <td class="num">
+                                    <span class="{% if movimiento.tipo == 'ENTRADA' %}text-success{% elif movimiento.tipo == 'SALIDA' %}text-danger{% else %}text-accent{% endif %}">
+                                        {{ movimiento.cantidad_con_signo }}
+                                    </span>
+                                </td>
+                                <td>{{ movimiento.usuario }}</td>
+                                <td class="cell-date">{{ movimiento.fecha|date:"d M, H:i" }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <span class="empty-icon">↕</span>
+                <h3>Aún no hay movimientos</h3>
+                <p>Registra una entrada para empezar a ver stock en el dashboard.</p>
+                <a class="btn btn-secondary btn-sm" href="{% url 'inventory:movement_create' %}">Registrar movimiento</a>
+            </div>
+        {% endif %}
+    </section>
+
+    <aside class="card card--side">
+        <div class="card-header">
+            <div>
+                <h2>Stock bajo</h2>
+                <p>Variantes que necesitan reposición.</p>
+            </div>
+            {% if total_bajos %}<span class="badge badge--warning">{{ total_bajos }}</span>{% endif %}
+        </div>
+
+        {% if variantes_bajas %}
+            <div class="low-list">
+                {% for variante in variantes_bajas %}
+                    <a class="low-item" href="{% url 'catalog:product_detail' variante.producto_id %}">
+                        <span class="low-item-main">
+                            <strong>{{ variante.producto }}</strong>
+                            <small>{{ variante.talla }} / {{ variante.color }}</small>
+                        </span>
+                        <span class="low-item-stock">
+                            <strong>{{ variante.stock }}</strong>
+                            <small>mín. {{ variante.minimo }}</small>
+                        </span>
+                    </a>
+                {% endfor %}
+            </div>
+            {% if total_bajos > 5 %}
+                <p class="card-footnote">Y {{ total_bajos|add:"-5" }} variante{{ total_bajos|add:"-5"|pluralize:"s" }} más.</p>
+            {% endif %}
+        {% else %}
+            <div class="empty-state empty-state--compact">
+                <span class="empty-icon empty-icon--success">✓</span>
+                <h3>Sin alertas</h3>
+                <p>Todas las variantes tienen stock suficiente.</p>
+            </div>
+        {% endif %}
+    </aside>
+</div>
+{% endblock %}

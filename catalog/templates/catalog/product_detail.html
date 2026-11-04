@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block title %}{{ producto.nombre }} · Stock Almacén{% endblock %}
+{% block eyebrow %}Catálogo / Producto{% endblock %}
+{% block page_title %}{{ producto.nombre }}{% endblock %}
+{% block page_subtitle %}Detalle del producto, variantes y existencias.{% endblock %}
+
+{% block header_actions %}
+    <a class="btn btn-secondary" href="{% url 'inventory:movement_create' %}">Registrar movimiento</a>
+    <a class="btn btn-primary" href="{% url 'catalog:product_update' producto.pk %}">Editar producto</a>
+{% endblock %}
+
+{% block content %}
+<section class="product-hero">
+    <div class="product-hero-main">
+        <span class="product-avatar">{{ producto.nombre|first|upper }}</span>
+        <div>
+            <div class="tag-row">
+                <span class="badge badge--accent">{{ producto.categoria.nombre }}</span>
+                {% if producto.activo %}
+                    <span class="badge badge--success">Activo</span>
+                {% else %}
+                    <span class="badge badge--muted">Inactivo</span>
+                {% endif %}
+                {% if producto.tiene_stock_bajo %}
+                    <span class="badge badge--warning">Stock bajo</span>
+                {% endif %}
+            </div>
+            <h2>{{ producto.nombre }}</h2>
+            <p class="product-meta">
+                {{ producto.marca|default:"Sin marca" }} · SKU <span class="code">{{ producto.sku }}</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <span>Precio</span>
+            <strong>$ {{ producto.precio|floatformat:2 }}</strong>
+        </div>
+        <div class="hero-stat">
+            <span>Stock total</span>
+            <strong>{{ producto.stock_total }}</strong>
+        </div>
+        <div class="hero-stat">
+            <span>Variantes</span>
+            <strong>{{ producto.variantes.all|length }}</strong>
+        </div>
+    </div>
+</section>
+
+<section class="card">
+    <div class="card-header">
+        <div>
+            <h2>Variantes y stock</h2>
+            <p>El stock se calcula a partir de los movimientos registrados.</p>
+        </div>
+        <a class="btn btn-secondary btn-sm" href="{% url 'catalog:variant_create' producto.pk %}">+ Agregar variante</a>
+    </div>
+
+    {% if producto.variantes.all %}
+        <div class="table-wrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Talla</th>
+                        <th>Color</th>
+                        <th class="num">Stock actual</th>
+                        <th class="num">Mínimo</th>
+                        <th>Estado</th>
+                        <th class="actions-col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for variante in producto.variantes.all %}
+                        <tr>
+                            <td><span class="size-chip">{{ variante.talla }}</span></td>
+                            <td>{{ variante.color }}</td>
+                            <td class="num">
+                                <span class="stock-pill {% if variante.stock_bajo %}stock-pill--low{% endif %}">{{ variante.stock_actual }}</span>
+                            </td>
+                            <td class="num">{{ variante.stock_minimo }}</td>
+                            <td>
+                                {% if variante.stock_bajo %}
+                                    <span class="badge badge--warning">Stock bajo</span>
+                                {% else %}
+                                    <span class="badge badge--success">Disponible</span>
+                                {% endif %}
+                            </td>
+                            <td class="actions-col">
+                                <a class="btn btn-ghost btn-sm" href="{% url 'inventory:movement_create' %}?variante={{ variante.pk }}">Movimiento</a>
+                                <a class="btn btn-ghost btn-sm" href="{% url 'catalog:variant_update' variante.pk %}">Editar</a>
+                                <a class="btn btn-ghost btn-sm btn-ghost--danger" href="{% url 'catalog:variant_delete' variante.pk %}">Eliminar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <span class="empty-icon">◫</span>
+            <h3>Este producto no tiene variantes</h3>
+            <p>Agrega al menos una combinación de talla y color para controlar su stock.</p>
+            <a class="btn btn-primary btn-sm" href="{% url 'catalog:variant_create' producto.pk %}">Agregar variante</a>
+        </div>
+    {% endif %}
+</section>
+
+<section class="card">
+    <div class="card-header">
+        <div>
+            <h2>Movimientos recientes</h2>
+            <p>Últimas operaciones de este producto.</p>
+        </div>
+        <a class="link-arrow" href="{% url 'inventory:movement_list' %}?producto={{ producto.pk }}">Ver historial completo →</a>
+    </div>
+
+    {% if ultimos_movimientos %}
+        <div class="table-wrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Variante</th>
+                        <th>Tipo</th>
+                        <th class="num">Cantidad</th>
+                        <th>Usuario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movimiento in ultimos_movimientos %}
+                        <tr>
+                            <td class="cell-date">{{ movimiento.fecha|date:"d M, Y · H:i" }}</td>
+                            <td>{{ movimiento.variante.talla }} / {{ movimiento.variante.color }}</td>
+                            <td><span class="badge badge--{{ movimiento.tipo|lower }}">{{ movimiento.get_tipo_display }}</span></td>
+                            <td class="num">
+                                <span class="{% if movimiento.tipo == 'ENTRADA' %}text-success{% elif movimiento.tipo == 'SALIDA' %}text-danger{% else %}text-accent{% endif %}">
+                                    {{ movimiento.cantidad_con_signo }}
+                                </span>
+                            </td>
+                            <td>{{ movimiento.usuario.get_username }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="empty-state empty-state--compact">
+            <h3>Sin movimientos todavía</h3>
+            <p>Registra una entrada para empezar a construir el historial.</p>
+            <a class="btn btn-secondary btn-sm" href="{% url 'inventory:movement_create' %}?variante={% if producto.variantes.all %}{{ producto.variantes.all.0.pk }}{% endif %}">Registrar movimiento</a>
+        </div>
+    {% endif %}
+</section>
+
+<div class="page-danger-zone">
+    <a class="btn btn-ghost btn-ghost--danger btn-sm" href="{% url 'catalog:product_delete' producto.pk %}">Eliminar producto</a>
+</div>
+{% endblock %}
