@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-05T00:00:00.000Z",
+  "title": "Design System: Stock Almacén",
+  "extensions": {
+    "colorMeta": {
+      "indigo-ink": {
+        "role": "primary",
+        "displayName": "Índigo de Tinta",
+        "canonical": "oklch(51.1% 0.230 277)",
+        "tonalRamp": ["#e3ecff", "#c8d3ff", "#a3afff", "#7a84f9", "#5958eb", "#3f36be", "#281f85", "#13084f"]
+      },
+      "indigo-ink-deep": {
+        "role": "primary",
+        "displayName": "Índigo de Tinta Profundo",
+        "canonical": "oklch(45.7% 0.215 277)",
+        "tonalRamp": ["#e6ecff", "#cbd4ff", "#a6b1fb", "#7d87ea", "#5b5fd9", "#3f34c1", "#281a8a", "#130157"]
+      },
+      "indigo-wash": {
+        "role": "primary",
+        "displayName": "Aguada Índigo",
+        "canonical": "oklch(96.2% 0.018 272)",
+        "tonalRamp": ["#eaeefb", "#d3d7e3", "#b4b7c1", "#8f929b", "#6f7178", "#505258", "#34353a", "#191a1e"]
+      },
+      "indigo-hairline": {
+        "role": "primary",
+        "displayName": "Hairline Índigo",
+        "canonical": "oklch(87.0% 0.062 274)",
+        "tonalRamp": ["#e2edff", "#cad5ff", "#acb5dc", "#8891b1", "#69708b", "#4c5167", "#303445", "#171a25"]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Lienzo Frío",
+        "canonical": "oklch(97.4% 0.005 275)",
+        "tonalRamp": ["#edeef2", "#d6d7db", "#b6b7ba", "#919295", "#717174", "#525254", "#353537", "#1a1a1b"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Superficie",
+        "canonical": "oklch(100.0% 0.000 90)",
+        "tonalRamp": ["#eeeeee", "#d7d7d7", "#b7b7b7", "#929292", "#717171", "#525252", "#353535", "#1b1b1b"]
+      },
+      "surface-muted": {
+        "role": "neutral",
+        "displayName": "Superficie Apagada",
+        "canonical": "oklch(98.5% 0.002 248)",
+        "tonalRamp": ["#edeeef", "#d7d7d8", "#b7b7b8", "#919293", "#717172", "#525253", "#353536", "#1a1b1b"]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(93.4% 0.008 271)",
+        "tonalRamp": ["#eceef4", "#d5d7dd", "#b5b7bc", "#919296", "#707175", "#515255", "#353537", "#1a1a1c"]
+      },
+      "hairline-strong": {
+        "role": "neutral",
+        "displayName": "Hairline Reforzada",
+        "canonical": "oklch(88.8% 0.013 267)",
+        "tonalRamp": ["#ebeef7", "#d3d7e0", "#b4b7bf", "#8f9299", "#6f7177", "#515257", "#343539", "#1a1b1d"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "oklch(21.1% 0.025 270)",
+        "tonalRamp": ["#edeef2", "#d5d7dc", "#b5b7be", "#8f929a", "#6e717b", "#4e525d", "#313541", "#161a26"]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Tinta Suave",
+        "canonical": "oklch(44.6% 0.026 257)",
+        "tonalRamp": ["#eceff2", "#d4d8dd", "#b2b8c0", "#8b939d", "#69727f", "#495361", "#2e3641", "#151b23"]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Gris Medio",
+        "canonical": "oklch(55.1% 0.023 264)",
+        "tonalRamp": ["#ebeef5", "#d4d8df", "#b2b7c1", "#8c929f", "#6b7280", "#4d535e", "#31353e", "#181b20"]
+      },
+      "muted-faint": {
+        "role": "neutral",
+        "displayName": "Gris Tenue",
+        "canonical": "oklch(70.8% 0.021 263)",
+        "tonalRamp": ["#e9eff9", "#d2d8e3", "#b1b8c4", "#8c929e", "#6c727c", "#4e535a", "#32353b", "#181b1f"]
+      },
+      "success": {
+        "role": "tertiary",
+        "displayName": "Verde Almacén",
+        "canonical": "oklch(50.8% 0.105 166)",
+        "tonalRamp": ["#def5ea", "#c0e0d1", "#95c4af", "#61a287", "#2b8364", "#006246", "#00412c", "#002214"]
+      },
+      "success-wash": {
+        "role": "tertiary",
+        "displayName": "Aguada Verde",
+        "canonical": "oklch(97.9% 0.021 166)",
+        "tonalRamp": ["#e3f3eb", "#cddcd5", "#aebbb5", "#8a9590", "#6b7470", "#4d5551", "#313734", "#181c1a"]
+      },
+      "warning": {
+        "role": "secondary",
+        "displayName": "Ámbar de Reposición",
+        "canonical": "oklch(55.5% 0.146 49)",
+        "tonalRamp": ["#ffe4cd", "#ffcaad", "#eaa581", "#ce7a4a", "#b25208", "#853900", "#5a2200", "#330d00"]
+      },
+      "warning-wash": {
+        "role": "secondary",
+        "displayName": "Aguada Ámbar",
+        "canonical": "oklch(98.7% 0.021 95)",
+        "tonalRamp": ["#f3efdf", "#dbd8ca", "#bbb7ab", "#959288", "#747269", "#54534c", "#373530", "#1c1b17"]
+      },
+      "danger": {
+        "role": "secondary",
+        "displayName": "Rojo Salida",
+        "canonical": "oklch(57.7% 0.215 27)",
+        "tonalRamp": ["#ffd6cb", "#ffb9ac", "#ff8e81", "#f0584e", "#cf2122", "#9b0e12", "#6b0004", "#3e0000"]
+      },
+      "danger-wash": {
+        "role": "secondary",
+        "displayName": "Aguada Roja",
+        "canonical": "oklch(97.1% 0.013 17)",
+        "tonalRamp": ["#f7ebeb", "#dfd4d4", "#beb5b5", "#989090", "#767070", "#565151", "#383434", "#1d1a1a"]
+      }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Headline", "purpose": "Único h1 de la barra superior; baja a 24px a 900px o menos." },
+      "title": { "displayName": "Title", "purpose": "Nombre del producto en su ficha y título de la tarjeta de acceso." },
+      "metric": { "displayName": "Metric", "purpose": "Valor de los indicadores del dashboard; la cifra más grande del sistema." },
+      "section-title": { "displayName": "Section Title", "purpose": "Cabecera de tarjeta, estado vacío y nota lateral." },
+      "body": { "displayName": "Body", "purpose": "Texto corrido y párrafos de apoyo." },
+      "data": { "displayName": "Data", "purpose": "Tablas, formularios, botones y texto de interfaz; tamaño dominante." },
+      "label": { "displayName": "Label", "purpose": "Eyebrows, cabeceras de tabla y micro-etiquetas en mayúsculas." },
+      "mono": { "displayName": "Mono", "purpose": "Exclusivamente el SKU dentro de un chip con borde." }
+    },
+    "shadows": [
+      { "name": "texture", "value": "0 1px 2px rgba(20, 24, 36, 0.04)", "purpose": "Tarjetas, indicadores, hero de producto y botón primario en reposo." },
+      { "name": "rest-high", "value": "0 2px 8px rgba(20, 24, 36, 0.05)", "purpose": "Elemento que debe leerse por encima de una superficie ya elevada." },
+      { "name": "action-halo", "value": "0 5px 14px rgba(79, 70, 229, 0.22)", "purpose": "Hover del botón primario; única sombra con color." },
+      { "name": "threshold", "value": "0 24px 60px rgba(20, 24, 36, 0.1)", "purpose": "Exclusiva de la tarjeta de login." },
+      { "name": "brand-halo", "value": "0 7px 16px rgba(79, 70, 229, 0.24)", "purpose": "Marca SA de la barra lateral, fija." }
+    ],
+    "motion": [
+      { "name": "state-transition", "value": "160ms ease", "purpose": "Hover y focus de botones, enlaces, filas y navegación." },
+      { "name": "message-in", "value": "180ms ease both", "purpose": "Entrada de los mensajes de Django: opacidad y desplazamiento de 4px." },
+      { "name": "primary-lift", "value": "transform: translateY(-1px)", "purpose": "Único desplazamiento permitido, en hover del botón primario." },
+      { "name": "reduced-motion", "value": "@media (prefers-reduced-motion: reduce)", "purpose": "Anula animaciones y transiciones a 0.01ms en todo el sistema." }
+    ],
+    "breakpoints": [
+      { "name": "lg", "value": "1120px", "purpose": "Colapsan las rejillas laterales de dashboard y formularios." },
+      { "name": "md", "value": "900px", "purpose": "La barra lateral pasa a barra superior horizontal." },
+      { "name": "sm", "value": "760px", "purpose": "Métricas y formularios a una columna; barra superior apilada." },
+      { "name": "xs", "value": "480px", "purpose": "Filtros y acciones de confirmación a ancho completo." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "La acción que la pantalla existe para permitir: una sola por vista, en la barra superior.",
+      "html": "<button class=\"ds-btn-primary\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg>Registrar movimiento</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 14px; border: 1px solid transparent; border-radius: 9px; background: var(--accent, #4f46e5); color: #fff; font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; font-size: 13px; font-weight: 600; line-height: 1.2; white-space: nowrap; cursor: pointer; box-shadow: 0 1px 2px rgba(20, 24, 36, 0.08); transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease; } .ds-btn-primary svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; } .ds-btn-primary:hover { background: var(--accent-strong, #4338ca); box-shadow: 0 5px 14px rgba(79, 70, 229, 0.22); transform: translateY(-1px); } .ds-btn-primary:focus-visible { outline: 2px solid var(--accent, #4f46e5); outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Acción de apoyo con peso visual bajo: cancelar, filtrar, ver historial.",
+      "html": "<button class=\"ds-btn-secondary\">Filtrar</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 14px; border: 1px solid var(--border-strong, #d6dae3); border-radius: 9px; background: var(--surface, #fff); color: var(--text-soft, #4b5563); font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; font-size: 13px; font-weight: 600; line-height: 1.2; white-space: nowrap; cursor: pointer; transition: background 160ms ease, border-color 160ms ease, color 160ms ease; } .ds-btn-secondary:hover { background: var(--surface-muted, #f9fafb); border-color: #c2c8d4; color: var(--text, #141824); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--accent, #4f46e5); outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Row Action",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Acción dentro de una tabla o tarjeta; nunca sólida, para no competir con la primaria.",
+      "html": "<button class=\"ds-btn-ghost\">Editar</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 14px; border: 1px solid transparent; border-radius: 9px; background: transparent; color: var(--muted, #6b7280); font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; font-size: 13px; font-weight: 600; line-height: 1.2; white-space: nowrap; cursor: pointer; transition: background 160ms ease, color 160ms ease; } .ds-btn-ghost:hover { background: var(--surface-muted, #f9fafb); color: var(--text, #141824); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--accent, #4f46e5); outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "field-input",
+      "description": "Campo de texto o selector con label de 12.5px, borde reforzado y anillo índigo al enfocar.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Nombre del producto <span class=\"ds-field-required\">*</span></span><input class=\"ds-field-input\" type=\"text\" value=\"Camisa Oxford\" placeholder=\"Ej. Camisa Oxford\"><span class=\"ds-field-help\">Aparece en el catálogo y en los movimientos.</span></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; } .ds-field-label { color: var(--text-soft, #4b5563); font-size: 12.5px; font-weight: 600; } .ds-field-required { color: var(--danger, #dc2626); } .ds-field-input { width: 100%; min-height: 40px; padding: 9px 12px; border: 1px solid var(--border-strong, #d6dae3); border-radius: 9px; background: var(--surface, #fff); color: var(--text, #141824); font: inherit; font-size: 13.5px; transition: border-color 160ms ease, box-shadow 160ms ease; } .ds-field-input::placeholder { color: var(--muted-2, #9aa1ae); } .ds-field-input:focus { outline: none; border-color: var(--accent, #4f46e5); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12); } .ds-field-help { color: var(--muted, #6b7280); font-size: 11.5px; line-height: 1.4; }"
+    },
+    {
+      "name": "Active Navigation Link",
+      "kind": "nav",
+      "refersTo": "nav-link-active",
+      "description": "Ítem seleccionado de la barra lateral: aguada índigo, texto profundo y barra de 3px al borde.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link is-active\" href=\"#\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z\"/><path d=\"m4 7.5 8 4.5 8-4.5M12 12v9\"/></svg>Catálogo</a><a class=\"ds-nav-link\" href=\"#\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 8h16v12H4z\"/><path d=\"M3 4h18v4H3zM9 12h6\"/></svg>Inventario</a></nav>",
+      "css": ".ds-nav { display: flex; flex-direction: column; gap: 3px; width: 200px; padding: 8px; background: var(--surface, #fff); border: 1px solid var(--border, #e7e9ef); border-radius: 14px; font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; } .ds-nav-link { position: relative; display: flex; align-items: center; gap: 11px; padding: 10px 12px; border-radius: 10px; color: var(--text-soft, #4b5563); font-size: 14px; font-weight: 500; text-decoration: none; transition: background 160ms ease, color 160ms ease; } .ds-nav-link svg { width: 18px; height: 18px; fill: none; stroke: var(--muted, #6b7280); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; } .ds-nav-link:hover { background: var(--surface-muted, #f9fafb); color: var(--text, #141824); } .ds-nav-link.is-active { background: var(--accent-soft, #eef2ff); color: var(--accent-strong, #4338ca); font-weight: 650; } .ds-nav-link.is-active svg { stroke: var(--accent, #4f46e5); } .ds-nav-link.is-active::before { content: \"\"; position: absolute; top: 9px; bottom: 9px; left: -1px; width: 3px; border-radius: 0 3px 3px 0; background: var(--accent, #4f46e5); } .ds-nav-link:focus-visible { outline: 2px solid var(--accent, #4f46e5); outline-offset: 2px; }"
+    },
+    {
+      "name": "Movement Badges",
+      "kind": "chip",
+      "refersTo": "badge-warning",
+      "description": "Tríada teñida que codifica el tipo de movimiento y el estado del stock.",
+      "html": "<div class=\"ds-badges\"><span class=\"ds-badge ds-badge--entrada\">Entrada</span><span class=\"ds-badge ds-badge--salida\">Salida</span><span class=\"ds-badge ds-badge--ajuste\">Ajuste</span><span class=\"ds-badge ds-badge--warning\">Stock bajo</span><span class=\"ds-badge ds-badge--success\">Activo</span><span class=\"ds-badge ds-badge--muted\">Inactivo</span></div>",
+      "css": ".ds-badges { display: flex; flex-wrap: wrap; gap: 6px; font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; } .ds-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px; border: 1px solid transparent; border-radius: 999px; font-size: 10.5px; font-weight: 650; line-height: 1.25; white-space: nowrap; } .ds-badge--entrada, .ds-badge--success { background: var(--success-soft, #ecfdf5); border-color: #c7f0df; color: var(--success, #047857); } .ds-badge--salida { background: var(--danger-soft, #fef2f2); border-color: #fecaca; color: #991b1b; } .ds-badge--ajuste { background: var(--accent-soft, #eef2ff); border-color: var(--accent-border, #c7d2fe); color: var(--accent-strong, #4338ca); } .ds-badge--warning { background: var(--warning-soft, #fffbeb); border-color: #f3dfa8; color: #92400e; } .ds-badge--muted { background: var(--surface-muted, #f9fafb); border-color: var(--border, #e7e9ef); color: var(--muted, #6b7280); }"
+    },
+    {
+      "name": "Metric Card",
+      "kind": "card",
+      "refersTo": "metric-card",
+      "description": "Indicador del dashboard: icono teñido, micro-etiqueta, cifra tabular de 34px y una línea de contexto.",
+      "html": "<article class=\"ds-metric\"><div class=\"ds-metric-top\"><span class=\"ds-metric-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 8h16v12H4z\"/><path d=\"M3 4h18v4H3zM9 12h6\"/></svg></span><span class=\"ds-metric-trend\">Existencias</span></div><p class=\"ds-metric-label\">Unidades en stock</p><p class=\"ds-metric-value\">248</p><p class=\"ds-metric-hint\">Calculadas desde los movimientos</p></article>",
+      "css": ".ds-metric { width: 240px; padding: 20px; background: var(--surface, #fff); border: 1px solid var(--border, #e7e9ef); border-radius: 14px; box-shadow: 0 1px 2px rgba(20, 24, 36, 0.04); font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; } .ds-metric-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; } .ds-metric-icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 11px; background: var(--accent-soft, #eef2ff); color: var(--accent, #4f46e5); } .ds-metric-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; } .ds-metric-trend { color: var(--muted-2, #9aa1ae); font-size: 10px; font-weight: 650; letter-spacing: 0.07em; text-align: right; text-transform: uppercase; } .ds-metric-label { margin: 0 0 7px; color: var(--muted, #6b7280); font-size: 11.5px; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; } .ds-metric-value { margin: 0 0 8px; font-size: 34px; font-weight: 680; letter-spacing: -0.035em; line-height: 1; font-variant-numeric: tabular-nums; } .ds-metric-hint { margin: 0; color: var(--muted, #6b7280); font-size: 11.5px; }"
+    },
+    {
+      "name": "Table Row",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "Fila de historial: título con subtítulo, badge de tipo, cantidad con signo y fecha tabular.",
+      "html": "<div class=\"ds-table\"><div class=\"ds-tr ds-th\"><span>Producto</span><span>Tipo</span><span class=\"ds-num\">Cantidad</span><span>Fecha</span></div><div class=\"ds-tr\"><span><a class=\"ds-cell-title\" href=\"#\">Camisa Oxford</a><span class=\"ds-cell-sub\">M / Azul</span></span><span><span class=\"ds-badge ds-badge--entrada\">Entrada</span></span><span class=\"ds-num ds-pos\">+12</span><span class=\"ds-date\">04 nov, 09:20</span></div><div class=\"ds-tr\"><span><a class=\"ds-cell-title\" href=\"#\">Jean Recto</a><span class=\"ds-cell-sub\">32 / Negro</span></span><span><span class=\"ds-badge ds-badge--salida\">Salida</span></span><span class=\"ds-num ds-neg\">−3</span><span class=\"ds-date\">04 nov, 08:55</span></div></div>",
+      "css": ".ds-table { width: 420px; overflow: hidden; background: var(--surface, #fff); border: 1px solid var(--border, #e7e9ef); border-radius: 14px; font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; font-size: 13.5px; } .ds-tr { display: grid; grid-template-columns: 1.5fr 0.9fr 0.7fr 1fr; align-items: center; gap: 12px; padding: 14px 20px; border-top: 1px solid var(--border, #e7e9ef); color: var(--text-soft, #4b5563); transition: background 160ms ease; } .ds-tr:first-child { border-top: 0; } .ds-tr:hover { background: #fafbff; } .ds-th { padding: 11px 20px; background: var(--surface-muted, #f9fafb); color: var(--muted, #6b7280); font-size: 10px; font-weight: 700; letter-spacing: 0.085em; text-transform: uppercase; } .ds-cell-title { display: block; color: var(--text, #141824); font-size: 13.5px; font-weight: 600; text-decoration: none; } .ds-cell-title:hover { color: var(--accent, #4f46e5); } .ds-cell-sub { display: block; margin-top: 2px; color: var(--muted, #6b7280); font-size: 11.5px; } .ds-num { text-align: right; font-variant-numeric: tabular-nums; } .ds-pos { color: var(--success, #047857); font-weight: 650; } .ds-neg { color: var(--danger, #dc2626); font-weight: 650; } .ds-date { color: var(--muted, #6b7280); font-size: 12.5px; white-space: nowrap; } .ds-badge { display: inline-flex; align-items: center; padding: 4px 9px; border: 1px solid #c7f0df; border-radius: 999px; background: var(--success-soft, #ecfdf5); color: var(--success, #047857); font-size: 10.5px; font-weight: 650; white-space: nowrap; } .ds-badge--salida { border-color: #fecaca; background: var(--danger-soft, #fef2f2); color: #991b1b; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Mostrador Ordenado",
+    "overview": "El sistema se comporta como un mostrador bien llevado: nada decorativo compite con el dato, todo lo que se necesita para responder \"¿cuánto hay?\" está a la vista, y la superficie no finge ser otra cosa. La densidad es media-alta y deliberada: tablas de 13.5px, etiquetas de 10px en mayúsculas, filas de 14px de padding vertical y una sola acción primaria por pantalla. El espacio en blanco no se usa para respirar por respirar, sino para separar bloques de información que se leen en orden.\n\nEl color es un recurso escaso. Un único índigo de tinta marca la acción principal, la navegación activa y el ajuste; los estados hablan en tríadas teñidas (fondo suave + borde + texto oscuro) en lugar de bloques saturados. El resto del sistema es gris: un lienzo frío casi blanco, superficies blancas, hairlines de 1px y sombras tan bajas que se leen más como textura que como profundidad.\n\nLa tipografía no tiene familia propia: usa la del sistema operativo y se afina con peso y tracking negativo en los números grandes, tabular en toda cifra. Ese detalle —la pila del sistema, los números alineados, las micro-etiquetas en mayúsculas— es lo que separa la interfaz de una plantilla de dashboard genérica: se siente herramienta, no producto de marketing. La única excepción expresiva es la pantalla de acceso, con sus halos radiales índigo y dos círculos trazados; es el umbral, y por eso puede permitirse el gesto.",
+    "keyCharacteristics": [
+      "Un solo acento índigo, usado en menos de una décima parte de cualquier pantalla.",
+      "Estructura por borde de 1px y relleno tonal; sombras casi imperceptibles.",
+      "Cifras siempre tabulares, y siempre el elemento tipográfico más grande de su bloque.",
+      "Radios suaves y anidados: 14px en contenedores, 9px en controles, 6px en micro-chips, 999px solo en píldoras y avatares.",
+      "Micro-etiquetas en mayúsculas de 10–11px con tracking amplio; nunca en cuerpo de texto.",
+      "Cero fuentes web, cero iconos de paquete: SVG en línea con trazo de 1.8."
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "El índigo se reserva para acción, selección y ajuste. Si un elemento no es clicable, no está seleccionado ni representa un ajuste, no lleva índigo. Su escasez es lo que lo hace legible como \"esto se pulsa\".", "section": "colors" },
+      { "name": "The Tinted State Rule", "body": "Un estado nunca se pinta como bloque sólido saturado. Siempre es tríada: fondo aguado, borde del mismo tono y texto oscuro del mismo tono. La única excepción son los botones danger y el botón primario, que sí son sólidos porque son acciones, no estados.", "section": "colors" },
+      { "name": "The Tabular Number Rule", "body": "Toda cifra —stock, cantidades, precios, mínimos, métricas— lleva font-variant-numeric: tabular-nums. Los números se comparan en columna; si bailan, la tabla deja de servir.", "section": "typography" },
+      { "name": "The Micro-Label Rule", "body": "Las mayúsculas con tracking solo se usan en etiquetas de 10–11px que nombran un dato debajo o al lado. Nunca en titulares, botones, enlaces ni frases.", "section": "typography" },
+      { "name": "The 18/24 Rule", "body": "Dentro de una rejilla, la separación es 18px; entre bloques apilados, 24px. No se inventan valores intermedios: si algo necesita más aire, cambia de bloque.", "section": "layout" },
+      { "name": "The Sidebar Owns Navigation Rule", "body": "Ninguna pantalla repite la navegación principal como pestañas o breadcrumbs clicables. El eyebrow (Catálogo / Producto) ubica, no navega.", "section": "layout" },
+      { "name": "The Flat-by-Default Rule", "body": "En la aplicación no hay sombras nuevas: si un bloque necesita separarse, se le da borde, fondo o espacio, no elevación. La sombra profunda pertenece al umbral de acceso.", "section": "elevation" },
+      { "name": "The Threshold Rule", "body": "Los halos radiales índigo y los dos círculos trazados existen solo en la pantalla de login. Son el único gesto decorativo del sistema y no se trasladan al interior de la aplicación.", "section": "elevation" },
+      { "name": "The Nested Radius Rule", "body": "El radio interior siempre es menor que el del contenedor: 9px dentro de 14px, 6px dentro de 9px. Un control con el mismo radio que su tarjeta se lee como un bloque pegado, no como un objeto dentro de otro.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do mantener exactamente un btn-primary por pantalla, dentro de topbar-actions (Registrar movimiento, Nuevo producto, Editar producto).",
+      "Do expresar estados como tríada teñida: fondo aguado + borde del tono + texto oscuro del tono.",
+      "Do aplicar tabular-nums a toda cifra y alinear a la derecha las columnas numéricas con class=\"num\".",
+      "Do usar las micro-etiquetas en mayúsculas de 10–11px con tracking de 0.07–0.14em para nombrar datos, nunca para frases.",
+      "Do separar con hairline de 1px y relleno tonal antes de recurrir a una sombra.",
+      "Do anidar radios: 9px dentro de 14px, 6px dentro de 9px.",
+      "Do reutilizar los tokens de :root (var(--accent), var(--space-4), var(--radius)) en lugar de valores literales nuevos.",
+      "Do usar SVG en línea de 18px con trazo 1.8 y currentColor; dentro de botones, 15px.",
+      "Do dejar que la pantalla de login conserve sus halos y círculos como único gesto decorativo."
+    ],
+    "donts": [
+      "Don't introducir un segundo color de acento, ni degradados de marca, ni modo oscuro.",
+      "Don't usar sombras por encima de 0 2px 8px rgba(20, 24, 36, 0.05) dentro de la aplicación; la sombra de 24px 60px es solo del umbral de login.",
+      "Don't redondear botones, tarjetas o campos a 999px; la píldora es exclusiva de badges, chips de caché y avatares.",
+      "Don't convertir las acciones de fila en botones primarios o sólidos: son ghost pequeños para que la acción principal siga siendo única.",
+      "Don't cargar fuentes web, paquetes de iconos, frameworks de CSS/JS ni pasos de build; el sistema es una sola hoja y plantillas Django.",
+      "Don't usar mayúsculas con tracking en titulares, botones, enlaces o párrafos.",
+      "Don't pintar un estado como bloque sólido saturado (salvo los botones de acción).",
+      "Don't repetir la navegación principal dentro de la pantalla como pestañas o breadcrumbs clicables.",
+      "Don't usar negro puro (#000) ni blanco puro como texto: la tinta es #141824 y el texto claro es #ffffff solo sobre fondos sólidos."
+    ]
+  }
+}
