@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Inventario · Stock Almacén{% endblock %}
-{% block eyebrow %}Inventario{% endblock %}
+{% block eyebrow %}<p class="eyebrow">Inventario</p>{% endblock %}
 {% block page_title %}Movimientos de stock{% endblock %}
 {% block page_subtitle %}Historial completo de entradas, salidas y ajustes.{% endblock %}
 
@@ -55,15 +55,16 @@
 
     {% if movimientos %}
         <div class="table-wrap">
-            <table class="table">
+            <table class="table table--movements">
+                <caption class="sr-only">Historial de movimientos de stock</caption>
                 <thead>
                     <tr>
-                        <th>Fecha</th>
-                        <th>Producto</th>
-                        <th>Tipo</th>
-                        <th class="num">Cantidad</th>
-                        <th>Nota</th>
-                        <th>Usuario</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col" class="col-tipo">Tipo</th>
+                        <th scope="col" class="num">Cantidad</th>
+                        <th scope="col" class="col-nota">Nota</th>
+                        <th scope="col" class="col-usuario">Usuario</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,14 +80,14 @@
                                 </a>
                                 <span class="cell-sub">{{ movimiento.variante.producto.sku }} · {{ movimiento.variante.talla }} / {{ movimiento.variante.color }}</span>
                             </td>
-                            <td><span class="badge badge--{{ movimiento.tipo|lower }}">{{ movimiento.get_tipo_display }}</span></td>
+                            <td class="col-tipo"><span class="badge badge--{{ movimiento.tipo|lower }}">{{ movimiento.get_tipo_display }}</span></td>
                             <td class="num">
                                 <span class="{% if movimiento.tipo == 'ENTRADA' %}text-success{% elif movimiento.tipo == 'SALIDA' %}text-danger{% else %}text-accent{% endif %}">
                                     {{ movimiento.cantidad_con_signo }}
                                 </span>
                             </td>
-                            <td class="cell-note">{{ movimiento.nota|default:"—" }}</td>
-                            <td>{{ movimiento.usuario.get_username }}</td>
+                            <td class="cell-note col-nota">{{ movimiento.nota|default:"—" }}</td>
+                            <td class="col-usuario">{{ movimiento.usuario.get_username }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

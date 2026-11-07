@@ -253,7 +253,7 @@ DASHBOARD_CACHE_KEY = "dashboard:resumen"
 DASHBOARD_CACHE_TIMEOUT = 60
 ```
 
-El dashboard hace `cache.get(...)`; si no hay datos, calcula el resumen y hace `cache.set(..., timeout=60)`. La plantilla muestra si los datos vienen de caché o si se acaban de calcular.
+El dashboard hace `cache.get(...)`; si no hay datos, calcula el resumen y hace `cache.set(..., timeout=60)`. La plantilla muestra la hora del último cálculo (`generado_en`) como chip "Actualizado HH:MM" en la barra superior.
 
 Las señales de `catalog/signals.py` e `inventory/signals.py` borran la clave cuando se guarda o elimina un producto, una variante o un movimiento. Así los indicadores se actualizan de inmediato sin esperar los 60 segundos.
 
@@ -267,7 +267,8 @@ Las señales de `catalog/signals.py` e `inventory/signals.py` borran la clave cu
 |---|---|---|
 | `/accounts/login/` | `LoginView` | Inicio de sesión |
 | `/accounts/logout/` | `LogoutView` | Cierre de sesión (POST) |
-| `/` | Dashboard | Indicadores y últimos movimientos |
+| `/` | Dashboard | Indicadores, últimos movimientos y stock bajo |
+| `/stock-bajo/` | Stock bajo | Lista completa de variantes a reponer, por déficit |
 | `/catalogo/` | Catálogo | Búsqueda y filtro por categoría |
 | `/catalogo/nuevo/` | Crear producto | Formulario de producto |
 | `/catalogo/<id>/` | Detalle | Variantes, stock e historial |
@@ -275,6 +276,8 @@ Las señales de `catalog/signals.py` e `inventory/signals.py` borran la clave cu
 | `/inventario/` | Historial | Filtros por fecha, tipo y producto |
 | `/inventario/registrar/` | Registrar movimiento | Entrada, salida o ajuste |
 | `/admin/` | Admin Django | Todos los modelos registrados |
+
+La barra superior incluye un buscador global (`GET /catalogo/?q=...`) en todas las pantallas salvo el propio catálogo, que ya trae su buscador y filtro por categoría.
 
 ---
 
@@ -304,10 +307,14 @@ Accede en <http://127.0.0.1:8000/admin/> con el superusuario.
 - Una sola hoja de estilos: `static/css/app.css`.
 - Variables CSS en `:root` para color, radios, sombras y tipografía.
 - Paleta reducida: índigo como acento, grises neutros y rojo/ámbar/verde solo para estados.
+- Los estados se componen con tokens semánticos (`--danger-strong`, `--warning-border`, `--success-hairline`…): ningún color literal repetido en las reglas.
+- Escala tipográfica cerrada (9–34px, pasos documentados en `DESIGN.md`); no se inventan tamaños intermedios.
 - Tipografía `system-ui`.
 - Layout de sidebar fija + contenido principal con CSS Grid.
 - Tarjetas, tablas con hover, badges, botones consistentes, formularios con errores visibles y mensajes de Django estilizados.
-- Responsive: en móvil la sidebar se convierte en una barra superior con navegación horizontal.
+- Responsive: en móvil la sidebar se convierte en una barra superior y la navegación fluye en varias filas; las tablas ocultan columnas secundarias antes que recurrir al scroll horizontal.
+- Buscador global en la barra superior (oculto en el catálogo, que tiene el suyo).
+- Ficha `/stock-bajo/` con la reposición pendiente ordenada por déficit y paginada.
 - Login centrado y con el mismo lenguaje visual.
 - `templates/base.html` es la base heredada por todas las páginas; `accounts/login.html` la extiende y reemplaza el bloque `layout`.
 - Sin JavaScript propio: la navegación y los estados se resuelven con HTML y CSS.
@@ -349,8 +356,10 @@ La suite incluida comprueba:
 - Ajustes que fijan el stock exacto.
 - Invalidación de la caché al registrar un movimiento.
 - Dashboard usando caché y refrescándose tras un movimiento.
+- Resumen del dashboard coherente con los datos (conteos, déficit y forma del resumen en caché).
+- Página `/stock-bajo/` ordenada por déficit y protegida por login.
 
-Resultado esperado: **8 tests OK** y `System check identified no issues`.
+Resultado esperado: **12 tests OK** y `System check identified no issues`.
 
 ---
 

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}{{ producto.nombre }} · Stock Almacén{% endblock %}
-{% block eyebrow %}Catálogo / Producto{% endblock %}
+{% block eyebrow %}<p class="eyebrow">Catálogo / Producto</p>{% endblock %}
 {% block page_title %}{{ producto.nombre }}{% endblock %}
 {% block page_subtitle %}Detalle del producto, variantes y existencias.{% endblock %}
 
@@ -61,14 +61,15 @@
     {% if producto.variantes.all %}
         <div class="table-wrap">
             <table class="table">
+                <caption class="sr-only">Variantes y stock del producto</caption>
                 <thead>
                     <tr>
-                        <th>Talla</th>
-                        <th>Color</th>
-                        <th class="num">Stock actual</th>
-                        <th class="num">Mínimo</th>
-                        <th>Estado</th>
-                        <th class="actions-col">Acciones</th>
+                        <th scope="col">Talla</th>
+                        <th scope="col">Color</th>
+                        <th scope="col" class="num">Stock actual</th>
+                        <th scope="col" class="num">Mínimo</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col" class="actions-col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -119,13 +120,14 @@
     {% if ultimos_movimientos %}
         <div class="table-wrap">
             <table class="table">
+                <caption class="sr-only">Movimientos recientes del producto</caption>
                 <thead>
                     <tr>
-                        <th>Fecha</th>
-                        <th>Variante</th>
-                        <th>Tipo</th>
-                        <th class="num">Cantidad</th>
-                        <th>Usuario</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Variante</th>
+                        <th scope="col" class="col-tipo">Tipo</th>
+                        <th scope="col" class="num">Cantidad</th>
+                        <th scope="col" class="col-secondary">Usuario</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -133,13 +135,13 @@
                         <tr>
                             <td class="cell-date">{{ movimiento.fecha|date:"d M, Y · H:i" }}</td>
                             <td>{{ movimiento.variante.talla }} / {{ movimiento.variante.color }}</td>
-                            <td><span class="badge badge--{{ movimiento.tipo|lower }}">{{ movimiento.get_tipo_display }}</span></td>
+                            <td class="col-tipo"><span class="badge badge--{{ movimiento.tipo|lower }}">{{ movimiento.get_tipo_display }}</span></td>
                             <td class="num">
                                 <span class="{% if movimiento.tipo == 'ENTRADA' %}text-success{% elif movimiento.tipo == 'SALIDA' %}text-danger{% else %}text-accent{% endif %}">
                                     {{ movimiento.cantidad_con_signo }}
                                 </span>
                             </td>
-                            <td>{{ movimiento.usuario.get_username }}</td>
+                            <td class="col-secondary">{{ movimiento.usuario.get_username }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

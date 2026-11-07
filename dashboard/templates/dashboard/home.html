@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 
 {% block title %}Dashboard · Stock Almacén{% endblock %}
-{% block eyebrow %}Resumen general{% endblock %}
 {% block page_title %}Hola, {{ user.get_full_name|default:user.username }}{% endblock %}
 {% block page_subtitle %}Una vista rápida del estado de tu almacén.{% endblock %}
 
 {% block header_actions %}
-    <span class="cache-chip" title="Los indicadores se guardan 60 segundos en LocMemCache">
-        <span class="cache-dot"></span>
-        {% if cache_usada %}Desde caché{% else %}Datos frescos{% endif %}
+    <span class="freshness-chip">
+        <span class="cache-dot" aria-hidden="true"></span>
+        <time datetime="{{ actualizado_en|date:'c' }}">Actualizado {{ actualizado_en|date:"H:i" }}</time>
     </span>
     <a class="btn btn-primary" href="{% url 'inventory:movement_create' %}">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
@@ -47,7 +46,7 @@
             <span class="metric-icon">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 9v5M12 17.5v.5"/></svg>
             </span>
-            <span class="metric-trend">{% if total_bajos %}Requiere atención{% else %}Todo en orden{% endif %}</span>
+            <span class="metric-trend">Reposición</span>
         </div>
         <p class="metric-label">Variantes con stock bajo</p>
         <p class="metric-value">{{ total_bajos }}</p>
@@ -56,10 +55,45 @@
 </section>
 
 <div class="dashboard-grid">
-    <section class="card">
+    <aside class="card card--side" aria-labelledby="stock-bajo-titulo">
         <div class="card-header">
             <div>
-                <h2>Últimos movimientos</h2>
+                <h2 id="stock-bajo-titulo">Stock bajo</h2>
+                <p>Variantes que necesitan reposición.</p>
+            </div>
+            {% if total_bajos %}
+                <a class="link-arrow" href="{% url 'dashboard:stock_bajo' %}">Ver todas →</a>
+            {% endif %}
+        </div>
+
+        {% if variantes_bajas %}
+            <div class="low-list">
+                {% for variante in variantes_bajas %}
+                    <a class="low-item" href="{% url 'catalog:product_detail' variante.producto_id %}">
+                        <span class="low-item-main">
+                            <strong>{{ variante.producto }}</strong>
+                            <small>{{ variante.talla }} / {{ variante.color }}</small>
+                        </span>
+                        <span class="low-item-stock">
+                            <strong>{{ variante.stock }}</strong>
+                            <small>{% if variante.faltante %}faltan {{ variante.faltante }}{% else %}en mínimo{% endif %}</small>
+                        </span>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state empty-state--compact">
+                <span class="empty-icon empty-icon--success">✓</span>
+                <h3>Sin alertas</h3>
+                <p>Todas las variantes tienen stock suficiente.</p>
+            </div>
+        {% endif %}
+    </aside>
+
+    <section class="card card--main" aria-labelledby="movimientos-titulo">
+        <div class="card-header">
+            <div>
+                <h2 id="movimientos-titulo">Últimos movimientos</h2>
                 <p>Las 10 operaciones más recientes del almacén.</p>
             </div>
             <a class="link-arrow" href="{% url 'inventory:movement_list' %}">Ver historial →</a>
@@ -67,14 +101,15 @@
 
         {% if movimientos %}
             <div class="table-wrap">
-                <table class="table">
+                <table class="table table--movements">
+                    <caption class="sr-only">Últimos movimientos registrados en el almacén</caption>
                     <thead>
                         <tr>
-                            <th>Producto</th>
-                            <th>Tipo</th>
-                            <th class="num">Cantidad</th>
-                            <th>Usuario</th>
-                            <th>Fecha</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col" class="num">Cantidad</th>
+                            <th scope="col" class="col-usuario">Usuario</th>
+                            <th scope="col" class="col-fecha">Fecha</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,6 +118,7 @@
                                 <td>
                                     <a class="cell-title" href="{% url 'catalog:product_detail' movimiento.producto_id %}">{{ movimiento.producto }}</a>
                                     <span class="cell-sub">{{ movimiento.variante }}</span>
+                                    <span class="cell-sub cell-sub--mobile">{{ movimiento.fecha|date:"d M, Y · H:i" }}</span>
                                 </td>
                                 <td><span class="badge badge--{{ movimiento.tipo|lower }}">{{ movimiento.tipo_display }}</span></td>
                                 <td class="num">
@@ -90,8 +126,8 @@
                                         {{ movimiento.cantidad_con_signo }}
                                     </span>
                                 </td>
-                                <td>{{ movimiento.usuario }}</td>
-                                <td class="cell-date">{{ movimiento.fecha|date:"d M, H:i" }}</td>
+                                <td class="col-usuario">{{ movimiento.usuario }}</td>
+                                <td class="cell-date col-fecha">{{ movimiento.fecha|date:"d M, H:i" }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -106,41 +142,5 @@
             </div>
         {% endif %}
     </section>
-
-    <aside class="card card--side">
-        <div class="card-header">
-            <div>
-                <h2>Stock bajo</h2>
-                <p>Variantes que necesitan reposición.</p>
-            </div>
-            {% if total_bajos %}<span class="badge badge--warning">{{ total_bajos }}</span>{% endif %}
-        </div>
-
-        {% if variantes_bajas %}
-            <div class="low-list">
-                {% for variante in variantes_bajas %}
-                    <a class="low-item" href="{% url 'catalog:product_detail' variante.producto_id %}">
-                        <span class="low-item-main">
-                            <strong>{{ variante.producto }}</strong>
-                            <small>{{ variante.talla }} / {{ variante.color }}</small>
-                        </span>
-                        <span class="low-item-stock">
-                            <strong>{{ variante.stock }}</strong>
-                            <small>mín. {{ variante.minimo }}</small>
-                        </span>
-                    </a>
-                {% endfor %}
-            </div>
-            {% if total_bajos > 5 %}
-                <p class="card-footnote">Y {{ total_bajos|add:"-5" }} variante{{ total_bajos|add:"-5"|pluralize:"s" }} más.</p>
-            {% endif %}
-        {% else %}
-            <div class="empty-state empty-state--compact">
-                <span class="empty-icon empty-icon--success">✓</span>
-                <h3>Sin alertas</h3>
-                <p>Todas las variantes tienen stock suficiente.</p>
-            </div>
-        {% endif %}
-    </aside>
 </div>
 {% endblock %}

@@ -46,6 +46,12 @@
         "canonical": "oklch(98.5% 0.002 248)",
         "tonalRamp": ["#edeeef", "#d7d7d8", "#b7b7b8", "#919293", "#717172", "#525253", "#353536", "#1a1b1b"]
       },
+      "surface-tint": {
+        "role": "neutral",
+        "displayName": "Veladura de Fila",
+        "canonical": "oklch(98.8% 0.005 275)",
+        "tonalRamp": ["#eaebef", "#d0d1d4", "#b3b4b7", "#919295", "#717174", "#525254", "#353536", "#1a1a1c"]
+      },
       "hairline": {
         "role": "neutral",
         "displayName": "Hairline",
@@ -57,6 +63,12 @@
         "displayName": "Hairline Reforzada",
         "canonical": "oklch(88.8% 0.013 267)",
         "tonalRamp": ["#ebeef7", "#d3d7e0", "#b4b7bf", "#8f9299", "#6f7177", "#515257", "#343539", "#1a1b1d"]
+      },
+      "hairline-hover": {
+        "role": "neutral",
+        "displayName": "Hairline de Hover",
+        "canonical": "oklch(83.2% 0.018 264)",
+        "tonalRamp": ["#e5ebf8", "#cbd1de", "#afb4bf", "#8e929b", "#6d727a", "#4f5359", "#33353a", "#191b1f"]
       },
       "ink": {
         "role": "neutral",
@@ -73,20 +85,32 @@
       "muted": {
         "role": "neutral",
         "displayName": "Gris Medio",
-        "canonical": "oklch(55.1% 0.023 264)",
-        "tonalRamp": ["#ebeef5", "#d4d8df", "#b2b7c1", "#8c929f", "#6b7280", "#4d535e", "#31353e", "#181b20"]
+        "canonical": "oklch(50.9% 0.024 264)",
+        "tonalRamp": ["#e3eaf7", "#c9d0de", "#abb3c0", "#8a919f", "#5f6674", "#454c58", "#292f3a", "#10151e"]
       },
       "muted-faint": {
         "role": "neutral",
         "displayName": "Gris Tenue",
-        "canonical": "oklch(70.8% 0.021 263)",
-        "tonalRamp": ["#e9eff9", "#d2d8e3", "#b1b8c4", "#8c929e", "#6c727c", "#4e535a", "#32353b", "#181b1f"]
+        "canonical": "oklch(55.1% 0.023 264)",
+        "tonalRamp": ["#e3eaf7", "#c9d0de", "#acb3c0", "#8a919f", "#6b7280", "#515764", "#343a45", "#191e28"]
       },
       "success": {
         "role": "tertiary",
         "displayName": "Verde Almacén",
         "canonical": "oklch(50.8% 0.105 166)",
         "tonalRamp": ["#def5ea", "#c0e0d1", "#95c4af", "#61a287", "#2b8364", "#006246", "#00412c", "#002214"]
+      },
+      "success-strong": {
+        "role": "tertiary",
+        "displayName": "Verde Profundo",
+        "canonical": "oklch(43.2% 0.086 167)",
+        "tonalRamp": ["#daf2e7", "#b8dacb", "#91c0ac", "#62a188", "#2f8366", "#076248", "#01402e", "#002116"]
+      },
+      "success-hairline": {
+        "role": "tertiary",
+        "displayName": "Hairline Verde",
+        "canonical": "oklch(92.1% 0.048 168)",
+        "tonalRamp": ["#d0f5e6", "#a9dfc9", "#79c7aa", "#35a985", "#008b62", "#006844", "#00452b", "#002414"]
       },
       "success-wash": {
         "role": "tertiary",
@@ -100,6 +124,30 @@
         "canonical": "oklch(55.5% 0.146 49)",
         "tonalRamp": ["#ffe4cd", "#ffcaad", "#eaa581", "#ce7a4a", "#b25208", "#853900", "#5a2200", "#330d00"]
       },
+      "warning-strong": {
+        "role": "secondary",
+        "displayName": "Ámbar Profundo",
+        "canonical": "oklch(47.3% 0.125 46)",
+        "tonalRamp": ["#ffe3d4", "#fcc2a8", "#e8a180", "#ce794f", "#b25118", "#853909", "#592201", "#320e00"]
+      },
+      "warning-hairline": {
+        "role": "secondary",
+        "displayName": "Hairline Ámbar",
+        "canonical": "oklch(92.4% 0.115 96)",
+        "tonalRamp": ["#ffeb9b", "#f5ce00", "#e2ae00", "#ca8500", "#af5b00", "#834000", "#582700", "#311100"]
+      },
+      "warning-hairline-deep": {
+        "role": "secondary",
+        "displayName": "Hairline Ámbar Reforzada",
+        "canonical": "oklch(90.7% 0.074 90)",
+        "tonalRamp": ["#f9eac2", "#eacf84", "#d3b049", "#b78c00", "#9b6700", "#734a00", "#4d2f00", "#2a1600"]
+      },
+      "warning-surface": {
+        "role": "secondary",
+        "displayName": "Superficie Ámbar",
+        "canonical": "oklch(99.3% 0.011 95)",
+        "tonalRamp": ["#edebe3", "#d5d1c3", "#b9b4a3", "#98927d", "#78725a", "#585340", "#393528", "#1d1b12"]
+      },
       "warning-wash": {
         "role": "secondary",
         "displayName": "Aguada Ámbar",
@@ -112,6 +160,24 @@
         "canonical": "oklch(57.7% 0.215 27)",
         "tonalRamp": ["#ffd6cb", "#ffb9ac", "#ff8e81", "#f0584e", "#cf2122", "#9b0e12", "#6b0004", "#3e0000"]
       },
+      "danger-strong": {
+        "role": "secondary",
+        "displayName": "Rojo Profundo",
+        "canonical": "oklch(44.4% 0.161 27)",
+        "tonalRamp": ["#ffe0db", "#fdc0b8", "#fb9388", "#ea5e54", "#ca2d2b", "#971a1a", "#67090b", "#3a0102"]
+      },
+      "danger-deep": {
+        "role": "secondary",
+        "displayName": "Rojo Hover",
+        "canonical": "oklch(50.5% 0.190 28)",
+        "tonalRamp": ["#ffe0da", "#ffbfb6", "#fe9184", "#ef594e", "#ce2422", "#9b1113", "#6a0105", "#3b0001"]
+      },
+      "danger-hairline": {
+        "role": "secondary",
+        "displayName": "Hairline Roja",
+        "canonical": "oklch(88.5% 0.059 18)",
+        "tonalRamp": ["#ffe0df", "#fdbebf", "#fc9194", "#eb5a66", "#cb2743", "#98142d", "#68041a", "#3a0009"]
+      },
       "danger-wash": {
         "role": "secondary",
         "displayName": "Aguada Roja",
@@ -120,14 +186,23 @@
       }
     },
     "typographyMeta": {
-      "headline": { "displayName": "Headline", "purpose": "Único h1 de la barra superior; baja a 24px a 900px o menos." },
-      "title": { "displayName": "Title", "purpose": "Nombre del producto en su ficha y título de la tarjeta de acceso." },
-      "metric": { "displayName": "Metric", "purpose": "Valor de los indicadores del dashboard; la cifra más grande del sistema." },
+      "headline": { "displayName": "Headline", "purpose": "Único h1 de la barra superior." },
+      "headline-compact": { "displayName": "Headline compacta", "purpose": "El h1 a 900px o menos, el h1 de la tarjeta de acceso y la inicial del avatar de producto." },
+      "title": { "displayName": "Title", "purpose": "Nombre del producto en su ficha y h2 de la tarjeta de acceso." },
+      "metric": { "displayName": "Metric", "purpose": "Indicadores del dashboard y cifra de stock en la ficha de producto; la cifra más grande del sistema." },
+      "heading-sm": { "displayName": "Heading small", "purpose": "h2 de la confirmación de borrado y glifo del icono de peligro." },
+      "stat": { "displayName": "Stat", "purpose": "Cifra secundaria del hero de producto y glifo de los estados vacíos." },
+      "subhead": { "displayName": "Subhead", "purpose": "Nombre de marca en la sidebar, cifra de la lista de reposición y stat del hero a 480px o menos." },
       "section-title": { "displayName": "Section Title", "purpose": "Cabecera de tarjeta, estado vacío y nota lateral." },
       "body": { "displayName": "Body", "purpose": "Texto corrido y párrafos de apoyo." },
-      "data": { "displayName": "Data", "purpose": "Tablas, formularios, botones y texto de interfaz; tamaño dominante." },
-      "label": { "displayName": "Label", "purpose": "Eyebrows, cabeceras de tabla y micro-etiquetas en mayúsculas." },
-      "mono": { "displayName": "Mono", "purpose": "Exclusivamente el SKU dentro de un chip con borde." }
+      "data": { "displayName": "Data", "purpose": "Tablas, formularios y texto de interfaz; tamaño dominante." },
+      "control": { "displayName": "Control", "purpose": "Botones, labels de formulario, píldoras de stock y metadatos de tabla." },
+      "nav": { "displayName": "Nav", "purpose": "Ítems de la navegación lateral y títulos de nota lateral; a 900px o menos baja a 13px." },
+      "caption": { "displayName": "Caption", "purpose": "Botón pequeño, chips y texto auxiliar de tarjetas densas." },
+      "label": { "displayName": "Label", "purpose": "Eyebrows, cabeceras de tabla, badges y micro-etiquetas en mayúsculas; piso de 11px para todo texto funcional." },
+      "mono": { "displayName": "Mono", "purpose": "Exclusivamente el SKU dentro de un chip con borde." },
+      "wordmark": { "displayName": "Wordmark", "purpose": "Subtítulo ALMACÉN del logo; excepción de marca, no texto funcional." },
+      "wordmark-micro": { "displayName": "Wordmark micro", "purpose": "Subtítulo ALMACÉN a 900px o menos; excepción de marca." }
     },
     "shadows": [
       { "name": "texture", "value": "0 1px 2px rgba(20, 24, 36, 0.04)", "purpose": "Tarjetas, indicadores, hero de producto y botón primario en reposo." },
@@ -144,9 +219,9 @@
     ],
     "breakpoints": [
       { "name": "lg", "value": "1120px", "purpose": "Colapsan las rejillas laterales de dashboard y formularios." },
-      { "name": "md", "value": "900px", "purpose": "La barra lateral pasa a barra superior horizontal." },
-      { "name": "sm", "value": "760px", "purpose": "Métricas y formularios a una columna; barra superior apilada." },
-      { "name": "xs", "value": "480px", "purpose": "Filtros y acciones de confirmación a ancho completo." }
+      { "name": "md", "value": "900px", "purpose": "La barra lateral pasa a barra superior horizontal y la navegación fluye en varias filas." },
+      { "name": "sm", "value": "760px", "purpose": "Métricas y formularios a una columna; barra superior apilada; las tablas ocultan sus columnas secundarias." },
+      { "name": "xs", "value": "480px", "purpose": "Filtros a una columna, el tipo de movimiento se oculta en tablas y las acciones pasan a ancho completo." }
     ]
   },
   "components": [
@@ -180,7 +255,7 @@
       "refersTo": "field-input",
       "description": "Campo de texto o selector con label de 12.5px, borde reforzado y anillo índigo al enfocar.",
       "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Nombre del producto <span class=\"ds-field-required\">*</span></span><input class=\"ds-field-input\" type=\"text\" value=\"Camisa Oxford\" placeholder=\"Ej. Camisa Oxford\"><span class=\"ds-field-help\">Aparece en el catálogo y en los movimientos.</span></label>",
-      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; } .ds-field-label { color: var(--text-soft, #4b5563); font-size: 12.5px; font-weight: 600; } .ds-field-required { color: var(--danger, #dc2626); } .ds-field-input { width: 100%; min-height: 40px; padding: 9px 12px; border: 1px solid var(--border-strong, #d6dae3); border-radius: 9px; background: var(--surface, #fff); color: var(--text, #141824); font: inherit; font-size: 13.5px; transition: border-color 160ms ease, box-shadow 160ms ease; } .ds-field-input::placeholder { color: var(--muted-2, #9aa1ae); } .ds-field-input:focus { outline: none; border-color: var(--accent, #4f46e5); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12); } .ds-field-help { color: var(--muted, #6b7280); font-size: 11.5px; line-height: 1.4; }"
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; } .ds-field-label { color: var(--text-soft, #4b5563); font-size: 12.5px; font-weight: 600; } .ds-field-required { color: var(--danger, #dc2626); } .ds-field-input { width: 100%; min-height: 40px; padding: 9px 12px; border: 1px solid var(--border-strong, #d6dae3); border-radius: 9px; background: var(--surface, #fff); color: var(--text, #141824); font: inherit; font-size: 13.5px; transition: border-color 160ms ease, box-shadow 160ms ease; } .ds-field-input::placeholder { color: var(--muted-2, #6b7280); } .ds-field-input:focus { outline: none; border-color: var(--accent, #4f46e5); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12); } .ds-field-help { color: var(--muted, #6b7280); font-size: 11.5px; line-height: 1.4; }"
     },
     {
       "name": "Active Navigation Link",
@@ -196,7 +271,7 @@
       "refersTo": "badge-warning",
       "description": "Tríada teñida que codifica el tipo de movimiento y el estado del stock.",
       "html": "<div class=\"ds-badges\"><span class=\"ds-badge ds-badge--entrada\">Entrada</span><span class=\"ds-badge ds-badge--salida\">Salida</span><span class=\"ds-badge ds-badge--ajuste\">Ajuste</span><span class=\"ds-badge ds-badge--warning\">Stock bajo</span><span class=\"ds-badge ds-badge--success\">Activo</span><span class=\"ds-badge ds-badge--muted\">Inactivo</span></div>",
-      "css": ".ds-badges { display: flex; flex-wrap: wrap; gap: 6px; font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; } .ds-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px; border: 1px solid transparent; border-radius: 999px; font-size: 10.5px; font-weight: 650; line-height: 1.25; white-space: nowrap; } .ds-badge--entrada, .ds-badge--success { background: var(--success-soft, #ecfdf5); border-color: #c7f0df; color: var(--success, #047857); } .ds-badge--salida { background: var(--danger-soft, #fef2f2); border-color: #fecaca; color: #991b1b; } .ds-badge--ajuste { background: var(--accent-soft, #eef2ff); border-color: var(--accent-border, #c7d2fe); color: var(--accent-strong, #4338ca); } .ds-badge--warning { background: var(--warning-soft, #fffbeb); border-color: #f3dfa8; color: #92400e; } .ds-badge--muted { background: var(--surface-muted, #f9fafb); border-color: var(--border, #e7e9ef); color: var(--muted, #6b7280); }"
+      "css": ".ds-badges { display: flex; flex-wrap: wrap; gap: 6px; font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; } .ds-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px; border: 1px solid transparent; border-radius: 999px; font-size: 11px; font-weight: 650; line-height: 1.25; white-space: nowrap; } .ds-badge--entrada, .ds-badge--success { background: var(--success-soft, #ecfdf5); border-color: #c7f0df; color: var(--success, #047857); } .ds-badge--salida { background: var(--danger-soft, #fef2f2); border-color: #fecaca; color: #991b1b; } .ds-badge--ajuste { background: var(--accent-soft, #eef2ff); border-color: var(--accent-border, #c7d2fe); color: var(--accent-strong, #4338ca); } .ds-badge--warning { background: var(--warning-soft, #fffbeb); border-color: #f3dfa8; color: #92400e; } .ds-badge--muted { background: var(--surface-muted, #f9fafb); border-color: var(--border, #e7e9ef); color: var(--muted, #6b7280); }"
     },
     {
       "name": "Metric Card",
@@ -204,7 +279,7 @@
       "refersTo": "metric-card",
       "description": "Indicador del dashboard: icono teñido, micro-etiqueta, cifra tabular de 34px y una línea de contexto.",
       "html": "<article class=\"ds-metric\"><div class=\"ds-metric-top\"><span class=\"ds-metric-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 8h16v12H4z\"/><path d=\"M3 4h18v4H3zM9 12h6\"/></svg></span><span class=\"ds-metric-trend\">Existencias</span></div><p class=\"ds-metric-label\">Unidades en stock</p><p class=\"ds-metric-value\">248</p><p class=\"ds-metric-hint\">Calculadas desde los movimientos</p></article>",
-      "css": ".ds-metric { width: 240px; padding: 20px; background: var(--surface, #fff); border: 1px solid var(--border, #e7e9ef); border-radius: 14px; box-shadow: 0 1px 2px rgba(20, 24, 36, 0.04); font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; } .ds-metric-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; } .ds-metric-icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 11px; background: var(--accent-soft, #eef2ff); color: var(--accent, #4f46e5); } .ds-metric-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; } .ds-metric-trend { color: var(--muted-2, #9aa1ae); font-size: 10px; font-weight: 650; letter-spacing: 0.07em; text-align: right; text-transform: uppercase; } .ds-metric-label { margin: 0 0 7px; color: var(--muted, #6b7280); font-size: 11.5px; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; } .ds-metric-value { margin: 0 0 8px; font-size: 34px; font-weight: 680; letter-spacing: -0.035em; line-height: 1; font-variant-numeric: tabular-nums; } .ds-metric-hint { margin: 0; color: var(--muted, #6b7280); font-size: 11.5px; }"
+      "css": ".ds-metric { width: 240px; padding: 20px; background: var(--surface, #fff); border: 1px solid var(--border, #e7e9ef); border-radius: 14px; box-shadow: 0 1px 2px rgba(20, 24, 36, 0.04); font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; } .ds-metric-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; } .ds-metric-icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 11px; background: var(--accent-soft, #eef2ff); color: var(--accent, #4f46e5); } .ds-metric-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; } .ds-metric-trend { color: var(--muted-2, #6b7280); font-size: 10px; font-weight: 650; letter-spacing: 0.07em; text-align: right; text-transform: uppercase; } .ds-metric-label { margin: 0 0 7px; color: var(--muted, #5f6674); font-size: 11px; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; } .ds-metric-value { margin: 0 0 8px; font-size: 34px; font-weight: 680; letter-spacing: -0.035em; line-height: 1; font-variant-numeric: tabular-nums; } .ds-metric-hint { margin: 0; color: var(--muted, #6b7280); font-size: 11.5px; }"
     },
     {
       "name": "Table Row",
@@ -212,25 +287,25 @@
       "refersTo": "card",
       "description": "Fila de historial: título con subtítulo, badge de tipo, cantidad con signo y fecha tabular.",
       "html": "<div class=\"ds-table\"><div class=\"ds-tr ds-th\"><span>Producto</span><span>Tipo</span><span class=\"ds-num\">Cantidad</span><span>Fecha</span></div><div class=\"ds-tr\"><span><a class=\"ds-cell-title\" href=\"#\">Camisa Oxford</a><span class=\"ds-cell-sub\">M / Azul</span></span><span><span class=\"ds-badge ds-badge--entrada\">Entrada</span></span><span class=\"ds-num ds-pos\">+12</span><span class=\"ds-date\">04 nov, 09:20</span></div><div class=\"ds-tr\"><span><a class=\"ds-cell-title\" href=\"#\">Jean Recto</a><span class=\"ds-cell-sub\">32 / Negro</span></span><span><span class=\"ds-badge ds-badge--salida\">Salida</span></span><span class=\"ds-num ds-neg\">−3</span><span class=\"ds-date\">04 nov, 08:55</span></div></div>",
-      "css": ".ds-table { width: 420px; overflow: hidden; background: var(--surface, #fff); border: 1px solid var(--border, #e7e9ef); border-radius: 14px; font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; font-size: 13.5px; } .ds-tr { display: grid; grid-template-columns: 1.5fr 0.9fr 0.7fr 1fr; align-items: center; gap: 12px; padding: 14px 20px; border-top: 1px solid var(--border, #e7e9ef); color: var(--text-soft, #4b5563); transition: background 160ms ease; } .ds-tr:first-child { border-top: 0; } .ds-tr:hover { background: #fafbff; } .ds-th { padding: 11px 20px; background: var(--surface-muted, #f9fafb); color: var(--muted, #6b7280); font-size: 10px; font-weight: 700; letter-spacing: 0.085em; text-transform: uppercase; } .ds-cell-title { display: block; color: var(--text, #141824); font-size: 13.5px; font-weight: 600; text-decoration: none; } .ds-cell-title:hover { color: var(--accent, #4f46e5); } .ds-cell-sub { display: block; margin-top: 2px; color: var(--muted, #6b7280); font-size: 11.5px; } .ds-num { text-align: right; font-variant-numeric: tabular-nums; } .ds-pos { color: var(--success, #047857); font-weight: 650; } .ds-neg { color: var(--danger, #dc2626); font-weight: 650; } .ds-date { color: var(--muted, #6b7280); font-size: 12.5px; white-space: nowrap; } .ds-badge { display: inline-flex; align-items: center; padding: 4px 9px; border: 1px solid #c7f0df; border-radius: 999px; background: var(--success-soft, #ecfdf5); color: var(--success, #047857); font-size: 10.5px; font-weight: 650; white-space: nowrap; } .ds-badge--salida { border-color: #fecaca; background: var(--danger-soft, #fef2f2); color: #991b1b; }"
+      "css": ".ds-table { width: 420px; overflow: hidden; background: var(--surface, #fff); border: 1px solid var(--border, #e7e9ef); border-radius: 14px; font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif; font-size: 13.5px; } .ds-tr { display: grid; grid-template-columns: 1.5fr 0.9fr 0.7fr 1fr; align-items: center; gap: 12px; padding: 14px 20px; border-top: 1px solid var(--border, #e7e9ef); color: var(--text-soft, #4b5563); transition: background 160ms ease; } .ds-tr:first-child { border-top: 0; } .ds-tr:hover { background: #fafbff; } .ds-th { padding: 11px 20px; background: var(--surface-muted, #f9fafb); color: var(--muted, #6b7280); font-size: 11px; font-weight: 700; letter-spacing: 0.085em; text-transform: uppercase; } .ds-cell-title { display: block; color: var(--text, #141824); font-size: 13.5px; font-weight: 600; text-decoration: none; } .ds-cell-title:hover { color: var(--accent, #4f46e5); } .ds-cell-sub { display: block; margin-top: 2px; color: var(--muted, #6b7280); font-size: 11.5px; } .ds-num { text-align: right; font-variant-numeric: tabular-nums; } .ds-pos { color: var(--success, #047857); font-weight: 650; } .ds-neg { color: var(--danger, #dc2626); font-weight: 650; } .ds-date { color: var(--muted, #6b7280); font-size: 12.5px; white-space: nowrap; } .ds-badge { display: inline-flex; align-items: center; padding: 4px 9px; border: 1px solid #c7f0df; border-radius: 999px; background: var(--success-soft, #ecfdf5); color: var(--success, #047857); font-size: 11px; font-weight: 650; white-space: nowrap; } .ds-badge--salida { border-color: #fecaca; background: var(--danger-soft, #fef2f2); color: #991b1b; }"
     }
   ],
   "narrative": {
     "northStar": "El Mostrador Ordenado",
-    "overview": "El sistema se comporta como un mostrador bien llevado: nada decorativo compite con el dato, todo lo que se necesita para responder \"¿cuánto hay?\" está a la vista, y la superficie no finge ser otra cosa. La densidad es media-alta y deliberada: tablas de 13.5px, etiquetas de 10px en mayúsculas, filas de 14px de padding vertical y una sola acción primaria por pantalla. El espacio en blanco no se usa para respirar por respirar, sino para separar bloques de información que se leen en orden.\n\nEl color es un recurso escaso. Un único índigo de tinta marca la acción principal, la navegación activa y el ajuste; los estados hablan en tríadas teñidas (fondo suave + borde + texto oscuro) en lugar de bloques saturados. El resto del sistema es gris: un lienzo frío casi blanco, superficies blancas, hairlines de 1px y sombras tan bajas que se leen más como textura que como profundidad.\n\nLa tipografía no tiene familia propia: usa la del sistema operativo y se afina con peso y tracking negativo en los números grandes, tabular en toda cifra. Ese detalle —la pila del sistema, los números alineados, las micro-etiquetas en mayúsculas— es lo que separa la interfaz de una plantilla de dashboard genérica: se siente herramienta, no producto de marketing. La única excepción expresiva es la pantalla de acceso, con sus halos radiales índigo y dos círculos trazados; es el umbral, y por eso puede permitirse el gesto.",
+    "overview": "El sistema se comporta como un mostrador bien llevado: nada decorativo compite con el dato, todo lo que se necesita para responder \"¿cuánto hay?\" está a la vista, y la superficie no finge ser otra cosa. La densidad es media-alta y deliberada: tablas de 13.5px, etiquetas de 11px en mayúsculas, filas de 14px de padding vertical y una sola acción primaria por pantalla. El espacio en blanco no se usa para respirar por respirar, sino para separar bloques de información que se leen en orden.\n\nEl color es un recurso escaso. Un único índigo de tinta marca la acción principal, la navegación activa y el ajuste; los estados hablan en tríadas teñidas (fondo suave + borde + texto oscuro) en lugar de bloques saturados. El resto del sistema es gris: un lienzo frío casi blanco, superficies blancas, hairlines de 1px y sombras tan bajas que se leen más como textura que como profundidad.\n\nLa tipografía no tiene familia propia: usa la del sistema operativo y se afina con peso y tracking negativo en los números grandes, tabular en toda cifra. Ese detalle —la pila del sistema, los números alineados, las micro-etiquetas en mayúsculas— es lo que separa la interfaz de una plantilla de dashboard genérica: se siente herramienta, no producto de marketing. La única excepción expresiva es la pantalla de acceso, con sus halos radiales índigo y dos círculos trazados; es el umbral, y por eso puede permitirse el gesto.",
     "keyCharacteristics": [
       "Un solo acento índigo, usado en menos de una décima parte de cualquier pantalla.",
       "Estructura por borde de 1px y relleno tonal; sombras casi imperceptibles.",
       "Cifras siempre tabulares, y siempre el elemento tipográfico más grande de su bloque.",
-      "Radios suaves y anidados: 14px en contenedores, 9px en controles, 6px en micro-chips, 999px solo en píldoras y avatares.",
-      "Micro-etiquetas en mayúsculas de 10–11px con tracking amplio; nunca en cuerpo de texto.",
+      "Radios suaves y anidados: 14px en contenedores, 9px en controles, 6–7px en micro-chips, 999px solo en píldoras y avatares.",
+      "Micro-etiquetas en mayúsculas de 11px con tracking amplio; nunca en cuerpo de texto.",
       "Cero fuentes web, cero iconos de paquete: SVG en línea con trazo de 1.8."
     ],
     "rules": [
       { "name": "The One Accent Rule", "body": "El índigo se reserva para acción, selección y ajuste. Si un elemento no es clicable, no está seleccionado ni representa un ajuste, no lleva índigo. Su escasez es lo que lo hace legible como \"esto se pulsa\".", "section": "colors" },
       { "name": "The Tinted State Rule", "body": "Un estado nunca se pinta como bloque sólido saturado. Siempre es tríada: fondo aguado, borde del mismo tono y texto oscuro del mismo tono. La única excepción son los botones danger y el botón primario, que sí son sólidos porque son acciones, no estados.", "section": "colors" },
       { "name": "The Tabular Number Rule", "body": "Toda cifra —stock, cantidades, precios, mínimos, métricas— lleva font-variant-numeric: tabular-nums. Los números se comparan en columna; si bailan, la tabla deja de servir.", "section": "typography" },
-      { "name": "The Micro-Label Rule", "body": "Las mayúsculas con tracking solo se usan en etiquetas de 10–11px que nombran un dato debajo o al lado. Nunca en titulares, botones, enlaces ni frases.", "section": "typography" },
+      { "name": "The Micro-Label Rule", "body": "Las mayúsculas con tracking solo se usan en etiquetas de 11px que nombran un dato debajo o al lado. Nunca en titulares, botones, enlaces ni frases. Es el piso tipográfico del sistema.", "section": "typography" },
       { "name": "The 18/24 Rule", "body": "Dentro de una rejilla, la separación es 18px; entre bloques apilados, 24px. No se inventan valores intermedios: si algo necesita más aire, cambia de bloque.", "section": "layout" },
       { "name": "The Sidebar Owns Navigation Rule", "body": "Ninguna pantalla repite la navegación principal como pestañas o breadcrumbs clicables. El eyebrow (Catálogo / Producto) ubica, no navega.", "section": "layout" },
       { "name": "The Flat-by-Default Rule", "body": "En la aplicación no hay sombras nuevas: si un bloque necesita separarse, se le da borde, fondo o espacio, no elevación. La sombra profunda pertenece al umbral de acceso.", "section": "elevation" },
@@ -241,7 +316,7 @@
       "Do mantener exactamente un btn-primary por pantalla, dentro de topbar-actions (Registrar movimiento, Nuevo producto, Editar producto).",
       "Do expresar estados como tríada teñida: fondo aguado + borde del tono + texto oscuro del tono.",
       "Do aplicar tabular-nums a toda cifra y alinear a la derecha las columnas numéricas con class=\"num\".",
-      "Do usar las micro-etiquetas en mayúsculas de 10–11px con tracking de 0.07–0.14em para nombrar datos, nunca para frases.",
+      "Do usar las micro-etiquetas en mayúsculas de 11px con tracking de 0.07–0.14em para nombrar datos, nunca para frases.",
       "Do separar con hairline de 1px y relleno tonal antes de recurrir a una sombra.",
       "Do anidar radios: 9px dentro de 14px, 6px dentro de 9px.",
       "Do reutilizar los tokens de :root (var(--accent), var(--space-4), var(--radius)) en lugar de valores literales nuevos.",
@@ -251,7 +326,7 @@
     "donts": [
       "Don't introducir un segundo color de acento, ni degradados de marca, ni modo oscuro.",
       "Don't usar sombras por encima de 0 2px 8px rgba(20, 24, 36, 0.05) dentro de la aplicación; la sombra de 24px 60px es solo del umbral de login.",
-      "Don't redondear botones, tarjetas o campos a 999px; la píldora es exclusiva de badges, chips de caché y avatares.",
+      "Don't redondear botones, tarjetas o campos a 999px; la píldora es exclusiva de badges, chips de frescura y avatares.",
       "Don't convertir las acciones de fila en botones primarios o sólidos: son ghost pequeños para que la acción principal siga siendo única.",
       "Don't cargar fuentes web, paquetes de iconos, frameworks de CSS/JS ni pasos de build; el sistema es una sola hoja y plantillas Django.",
       "Don't usar mayúsculas con tracking en titulares, botones, enlaces o párrafos.",

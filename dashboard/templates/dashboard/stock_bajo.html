@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Stock bajo · Stock Almacén{% endblock %}
+{% block eyebrow %}<p class="eyebrow">Dashboard / Stock bajo</p>{% endblock %}
+{% block page_title %}Stock bajo{% endblock %}
+{% block page_subtitle %}Variantes en o por debajo de su stock mínimo, primero lo que más falta reponer.{% endblock %}
+
+{% block header_actions %}
+    <a class="btn btn-primary" href="{% url 'inventory:movement_create' %}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        Registrar movimiento
+    </a>
+{% endblock %}
+
+{% block content %}
+<section class="card" aria-labelledby="reposicion-titulo">
+    <div class="card-header">
+        <div>
+            <h2 id="reposicion-titulo">Reposición pendiente</h2>
+            <p>
+                {{ total_bajos }} variante{{ total_bajos|pluralize:"s" }}
+                {% if total_faltantes %}· {{ total_faltantes }} unidad{{ total_faltantes|pluralize:"es" }} por reponer{% else %}· todas en el mínimo{% endif %}
+            </p>
+        </div>
+        <a class="link-arrow" href="{% url 'dashboard:home' %}">Volver al dashboard →</a>
+    </div>
+
+    {% if variantes %}
+        <ul class="replenish-list">
+            {% for variante in variantes %}
+                <li class="replenish-item">
+                    <div class="replenish-main">
+                        <a class="cell-title" href="{% url 'catalog:product_detail' variante.producto_id %}">{{ variante.producto.nombre }}</a>
+                        <span class="replenish-variant">
+                            <span class="size-chip">{{ variante.talla }}</span>
+                            {{ variante.color }}
+                        </span>
+                    </div>
+                    <div class="replenish-stock">
+                        <span class="stock-pill stock-pill--low">{{ variante.stock_actual }}</span>
+                        <small>mín. {{ variante.stock_minimo }}</small>
+                    </div>
+                    <div class="replenish-deficit">
+                        {% if variante.faltante %}
+                            <span class="badge badge--warning">faltan {{ variante.faltante }}</span>
+                        {% else %}
+                            <span class="badge badge--muted">en mínimo</span>
+                        {% endif %}
+                    </div>
+                    <a class="btn btn-secondary btn-sm" href="{% url 'inventory:movement_create' %}?variante={{ variante.pk }}">Movimiento</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% if is_paginated %}
+            <nav class="pagination" aria-label="Paginación de stock bajo">
+                <span class="pagination-info">Página {{ page_obj.number }} de {{ paginator.num_pages }}</span>
+                <div class="pagination-links">
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-secondary btn-sm" href="{% querystring page=page_obj.previous_page_number %}">Anterior</a>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-secondary btn-sm" href="{% querystring page=page_obj.next_page_number %}">Siguiente</a>
+                    {% endif %}
+                </div>
+            </nav>
+        {% endif %}
+    {% else %}
+        <div class="empty-state">
+            <span class="empty-icon empty-icon--success">✓</span>
+            <h3>Sin stock bajo</h3>
+            <p>Todas las variantes activas tienen más unidades que su stock mínimo.</p>
+            <a class="btn btn-secondary btn-sm" href="{% url 'catalog:product_list' %}">Revisar el catálogo</a>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

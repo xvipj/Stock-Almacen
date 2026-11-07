@@ -16,17 +16,31 @@
 
     --border: #e7e9ef;
     --border-strong: #d6dae3;
+    --border-hover: #c2c8d4;
+    --surface-tint: #fafbff;
 
     --text: #141824;
     --text-soft: #4b5563;
-    --muted: #6b7280;
-    --muted-2: #9aa1ae;
+    --muted: #5f6674;
+    --muted-2: #6b7280;
 
+    /* Cada estado es una tríada: fondo aguado, borde y texto del mismo tono.
+       Los sufijos -strong son el texto sobre la aguada; -border cierra la
+       píldora y -surface solo aparece en la tarjeta de alerta. */
     --danger: #dc2626;
+    --danger-strong: #991b1b;
+    --danger-hover: #b91c1c;
+    --danger-border: #fecaca;
     --danger-soft: #fef2f2;
     --warning: #b45309;
+    --warning-strong: #92400e;
+    --warning-border: #fde68a;
+    --warning-border-strong: #f3dfa8;
+    --warning-surface: #fffdf5;
     --warning-soft: #fffbeb;
     --success: #047857;
+    --success-strong: #065f46;
+    --success-border: #c7f0df;
     --success-soft: #ecfdf5;
 
     /* Espaciado, radios y sombras */
@@ -82,6 +96,29 @@ h1, h2, h3, p {
 
 a {
     color: var(--accent);
+}
+
+::selection {
+    background: var(--accent-border);
+    color: var(--text);
+}
+
+input,
+textarea {
+    caret-color: var(--accent);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
 }
 
 svg {
@@ -140,7 +177,7 @@ textarea {
     height: 40px;
     border-radius: 12px;
     background: var(--accent);
-    color: #fff;
+    color: var(--surface);
     font-size: 12px;
     font-weight: 750;
     letter-spacing: 0.05em;
@@ -177,7 +214,7 @@ textarea {
 .nav-label {
     padding: 8px 12px;
     color: var(--muted-2);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -274,7 +311,7 @@ textarea {
 .user-meta strong {
     overflow: hidden;
     color: var(--text);
-    font-size: 12.5px;
+    font-size: 13px;
     font-weight: 600;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -297,9 +334,10 @@ textarea {
     top: 0;
     z-index: 10;
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 24px;
+    gap: 12px 24px;
     padding: 28px 36px 22px;
     background: rgba(245, 246, 250, 0.9);
     border-bottom: 1px solid var(--border);
@@ -313,7 +351,7 @@ textarea {
 .eyebrow {
     margin: 0;
     color: var(--muted);
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 650;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -333,12 +371,29 @@ textarea {
     font-size: 13px;
 }
 
+/* Grid (no flex) para que el grupo mida su contenido real: un contenedor
+   flex con wrap calcula un ancho intrínseco menor y parte la fila. */
 .topbar-actions {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
     align-items: center;
-    justify-content: flex-end;
     gap: 10px;
+    margin-left: auto;
+}
+
+.topbar-search {
+    width: 250px;
+}
+
+.topbar-search .search-input {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.topbar-search input {
+    min-height: 38px;
+    height: 38px;
 }
 
 .content {
@@ -353,7 +408,7 @@ textarea {
     max-width: 1360px;
     margin: auto auto 0;
     padding: var(--space-6) var(--space-8) 30px;
-    color: var(--muted-2);
+    color: var(--muted);
     font-size: 11.5px;
 }
 
@@ -393,20 +448,20 @@ textarea {
 
 .message--success {
     background: var(--success-soft);
-    border-color: #c7f0df;
-    color: #065f46;
+    border-color: var(--success-border);
+    color: var(--success-strong);
 }
 
 .message--error {
     background: var(--danger-soft);
-    border-color: #fecaca;
-    color: #991b1b;
+    border-color: var(--danger-border);
+    color: var(--danger-strong);
 }
 
 .message--warning {
     background: var(--warning-soft);
-    border-color: #fde68a;
-    color: #92400e;
+    border-color: var(--warning-border);
+    color: var(--warning-strong);
 }
 
 .message--info,
@@ -436,11 +491,16 @@ textarea {
 
 .card-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
     padding: 19px 22px;
     border-bottom: 1px solid var(--border);
+}
+
+.card-header .link-arrow {
+    margin-left: auto;
 }
 
 .card-header h2 {
@@ -453,7 +513,7 @@ textarea {
 .card-header p {
     margin: 3px 0 0;
     color: var(--muted);
-    font-size: 12.5px;
+    font-size: 13px;
 }
 
 .card-header--stacked {
@@ -521,7 +581,7 @@ textarea {
 
 .metric-trend {
     color: var(--muted-2);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 650;
     letter-spacing: 0.07em;
     text-align: right;
@@ -553,8 +613,8 @@ textarea {
 }
 
 .metric-card--alert {
-    background: linear-gradient(180deg, #fffdf5 0%, #ffffff 70%);
-    border-color: #f3dfa8;
+    background: linear-gradient(180deg, var(--warning-surface) 0%, var(--surface) 70%);
+    border-color: var(--warning-border-strong);
 }
 
 .metric-card--alert .metric-icon {
@@ -563,7 +623,7 @@ textarea {
 }
 
 .metric-card--alert .metric-value {
-    color: #92400e;
+    color: var(--warning-strong);
 }
 
 .metric-card--ok .metric-icon {
@@ -578,7 +638,17 @@ textarea {
     align-items: start;
 }
 
-.card--side {
+/* El aside va primero en el DOM para que en móvil las alertas aparezcan antes;
+   en escritorio se coloca explícitamente a la derecha. */
+.dashboard-grid > .card--main {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+}
+
+.dashboard-grid > .card--side {
+    grid-column: 2;
+    grid-row: 1;
     min-width: 0;
 }
 
@@ -636,7 +706,7 @@ textarea {
 }
 
 .low-item-stock strong {
-    color: #b45309;
+    color: var(--warning);
     font-size: 16px;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
@@ -645,7 +715,69 @@ textarea {
 .low-item-stock small {
     display: block;
     color: var(--muted-2);
-    font-size: 10.5px;
+    font-size: 11px;
+}
+
+/* =========================================================
+   Reposición: vista completa de stock bajo
+   ========================================================= */
+
+.replenish-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.replenish-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 22px;
+    border-top: 1px solid var(--border);
+}
+
+.replenish-item:first-child {
+    border-top: 0;
+}
+
+.replenish-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.replenish-main .cell-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.replenish-variant {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.replenish-stock {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.replenish-stock small {
+    color: var(--muted);
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.replenish-deficit {
+    justify-self: end;
 }
 
 /* =========================================================
@@ -668,7 +800,7 @@ textarea {
     background: var(--surface-muted);
     border-bottom: 1px solid var(--border);
     color: var(--muted);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.085em;
     text-align: left;
@@ -692,7 +824,7 @@ textarea {
 }
 
 .table tbody tr:hover {
-    background: #fafbff;
+    background: var(--surface-tint);
 }
 
 .table .num {
@@ -727,9 +859,13 @@ a.cell-title:hover {
     font-weight: 400;
 }
 
+.cell-sub--mobile {
+    display: none;
+}
+
 .cell-date {
     color: var(--muted);
-    font-size: 12.5px;
+    font-size: 13px;
     white-space: nowrap;
 }
 
@@ -737,7 +873,7 @@ a.cell-title:hover {
     max-width: 230px;
     overflow: hidden;
     color: var(--muted);
-    font-size: 12.5px;
+    font-size: 13px;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -775,15 +911,15 @@ a.cell-title:hover {
     border-radius: var(--radius-xs);
     background: var(--surface-muted);
     color: var(--text);
-    font-size: 12.5px;
+    font-size: 13px;
     font-weight: 650;
     font-variant-numeric: tabular-nums;
 }
 
 .stock-pill--low {
     background: var(--warning-soft);
-    border-color: #f3dfa8;
-    color: #b45309;
+    border-color: var(--warning-border-strong);
+    color: var(--warning);
 }
 
 /* =========================================================
@@ -797,7 +933,7 @@ a.cell-title:hover {
     padding: 4px 9px;
     border: 1px solid transparent;
     border-radius: 999px;
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 650;
     letter-spacing: 0.01em;
     line-height: 1.25;
@@ -813,20 +949,20 @@ a.cell-title:hover {
 .badge--success,
 .badge--entrada {
     background: var(--success-soft);
-    border-color: #c7f0df;
+    border-color: var(--success-border);
     color: var(--success);
 }
 
 .badge--warning {
     background: var(--warning-soft);
-    border-color: #f3dfa8;
-    color: #92400e;
+    border-color: var(--warning-border-strong);
+    color: var(--warning-strong);
 }
 
 .badge--danger {
     background: var(--danger-soft);
-    border-color: #fecaca;
-    color: #991b1b;
+    border-color: var(--danger-border);
+    color: var(--danger-strong);
 }
 
 .badge--muted {
@@ -844,8 +980,8 @@ a.cell-title:hover {
 /* La salida se distingue en rojo, la entrada en verde y el ajuste en índigo. */
 .badge--salida {
     background: var(--danger-soft);
-    border-color: #fecaca;
-    color: #991b1b;
+    border-color: var(--danger-border);
+    color: var(--danger-strong);
 }
 
 /* =========================================================
@@ -888,7 +1024,7 @@ a:focus-visible {
 
 .btn-primary {
     background: var(--accent);
-    color: #fff;
+    color: var(--surface);
     box-shadow: 0 1px 2px rgba(20, 24, 36, 0.08);
 }
 
@@ -906,7 +1042,7 @@ a:focus-visible {
 
 .btn-secondary:hover {
     background: var(--surface-muted);
-    border-color: #c2c8d4;
+    border-color: var(--border-hover);
     color: var(--text);
 }
 
@@ -925,16 +1061,16 @@ a:focus-visible {
 
 .btn-ghost--danger:hover {
     background: var(--danger-soft);
-    color: #991b1b;
+    color: var(--danger-strong);
 }
 
 .btn-danger {
     background: var(--danger);
-    color: #fff;
+    color: var(--surface);
 }
 
 .btn-danger:hover {
-    background: #b91c1c;
+    background: var(--danger-hover);
     box-shadow: 0 5px 14px rgba(220, 38, 38, 0.2);
 }
 
@@ -988,7 +1124,7 @@ a:focus-visible {
 
 .field label {
     color: var(--text-soft);
-    font-size: 12.5px;
+    font-size: 13px;
     font-weight: 600;
 }
 
@@ -1088,10 +1224,10 @@ textarea:focus {
 .form-alert {
     margin-bottom: 18px;
     padding: 11px 13px;
-    border: 1px solid #fecaca;
+    border: 1px solid var(--danger-border);
     border-radius: 9px;
     background: var(--danger-soft);
-    color: #991b1b;
+    color: var(--danger-strong);
     font-size: 13px;
 }
 
@@ -1120,7 +1256,7 @@ textarea:focus {
 .side-note p {
     margin: 0 0 10px;
     color: var(--muted);
-    font-size: 12.5px;
+    font-size: 13px;
     line-height: 1.55;
 }
 
@@ -1132,14 +1268,14 @@ textarea:focus {
     display: block;
     margin-bottom: 7px;
     color: var(--muted-2);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.09em;
     text-transform: uppercase;
 }
 
 .side-note--stock {
-    background: linear-gradient(180deg, var(--accent-soft) 0%, #ffffff 80%);
+    background: linear-gradient(180deg, var(--accent-soft) 0%, var(--surface) 80%);
     border-color: var(--accent-border);
 }
 
@@ -1152,7 +1288,7 @@ textarea:focus {
 
 .stock-highlight strong {
     color: var(--text);
-    font-size: 32px;
+    font-size: 34px;
     font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1;
@@ -1175,7 +1311,7 @@ textarea:focus {
 
 .rule-list li {
     color: var(--muted);
-    font-size: 12.5px;
+    font-size: 13px;
     line-height: 1.5;
 }
 
@@ -1189,7 +1325,7 @@ textarea:focus {
 
 .filters {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-end;
     gap: 9px;
@@ -1198,6 +1334,21 @@ textarea:focus {
 .filters select {
     width: auto;
     min-width: 170px;
+}
+
+/* Filtros del catálogo: grid con columnas de contenido para que el grupo
+   no se parta en dos filas por el cálculo intrínseco de un flex con wrap. */
+.filters--catalog {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    align-items: center;
+    justify-content: end;
+    gap: 9px;
+}
+
+.filters--catalog .search-input {
+    width: 260px;
 }
 
 .search-input {
@@ -1217,7 +1368,9 @@ textarea:focus {
     pointer-events: none;
 }
 
-.search-input input {
+/* La regla global de inputs pesa (0,2,1); replicamos esa especificidad
+   para que el hueco del icono no se pierda. */
+.search-input input:not([type="checkbox"]):not([type="radio"]) {
     padding-left: 34px;
 }
 
@@ -1238,7 +1391,7 @@ textarea:focus {
 
 .filter-field label {
     color: var(--muted);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.07em;
     text-transform: uppercase;
@@ -1281,7 +1434,7 @@ textarea:focus {
 
 .empty-icon--success {
     background: var(--success-soft);
-    border-color: #c7f0df;
+    border-color: var(--success-border);
     color: var(--success);
 }
 
@@ -1352,7 +1505,7 @@ textarea:focus {
     border-radius: 15px;
     background: var(--accent-soft);
     color: var(--accent-strong);
-    font-size: 23px;
+    font-size: 24px;
     font-weight: 700;
 }
 
@@ -1394,7 +1547,7 @@ textarea:focus {
     display: block;
     margin-bottom: 4px;
     color: var(--muted);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.07em;
     text-transform: uppercase;
@@ -1418,7 +1571,7 @@ textarea:focus {
    ========================================================= */
 
 .danger-card {
-    border-color: #fecaca;
+    border-color: var(--danger-border);
 }
 
 .danger-card .card-body {
@@ -1432,7 +1585,7 @@ textarea:focus {
     width: 44px;
     height: 44px;
     margin-bottom: 16px;
-    border: 1px solid #fecaca;
+    border: 1px solid var(--danger-border);
     border-radius: 12px;
     background: var(--danger-soft);
     color: var(--danger);
@@ -1486,7 +1639,7 @@ textarea:focus {
 
 .link-arrow {
     color: var(--accent);
-    font-size: 12.5px;
+    font-size: 13px;
     font-weight: 600;
     text-decoration: none;
     white-space: nowrap;
@@ -1496,7 +1649,7 @@ textarea:focus {
     text-decoration: underline;
 }
 
-.cache-chip {
+.freshness-chip {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -1505,8 +1658,12 @@ textarea:focus {
     border-radius: 999px;
     background: var(--surface);
     color: var(--muted);
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 600;
+}
+
+.freshness-chip time {
+    font-variant-numeric: tabular-nums;
 }
 
 .cache-dot {
@@ -1601,7 +1758,7 @@ textarea:focus {
     border-radius: 6px;
     background: var(--accent-soft);
     color: var(--accent-strong);
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.09em;
     text-transform: uppercase;
@@ -1609,7 +1766,7 @@ textarea:focus {
 
 .auth-heading h1 {
     margin: 0 0 8px;
-    font-size: 25px;
+    font-size: 24px;
     font-weight: 680;
     letter-spacing: -0.03em;
 }
@@ -1646,7 +1803,7 @@ textarea:focus {
     position: relative;
     z-index: 1;
     margin: 20px 0 0;
-    color: var(--muted-2);
+    color: var(--muted);
     font-size: 12px;
     text-align: center;
 }
@@ -1659,6 +1816,12 @@ textarea:focus {
     .dashboard-grid,
     .form-layout {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .dashboard-grid > .card--main,
+    .dashboard-grid > .card--side {
+        grid-column: auto;
+        grid-row: auto;
     }
 
     .side-stack {
@@ -1684,7 +1847,7 @@ textarea:focus {
         border-bottom: 1px solid var(--border);
     }
 
-    .brand {
+    .sidebar .brand {
         margin-right: auto;
         padding: 0;
     }
@@ -1708,9 +1871,9 @@ textarea:focus {
         order: 3;
         flex-basis: 100%;
         flex-direction: row;
+        flex-wrap: wrap;
         gap: 2px;
         margin: 2px -4px 0;
-        overflow-x: auto;
         padding-bottom: 2px;
     }
 
@@ -1720,7 +1883,7 @@ textarea:focus {
 
     .nav-link {
         padding: 8px 10px;
-        font-size: 12.5px;
+        font-size: 13px;
         white-space: nowrap;
     }
 
@@ -1779,6 +1942,51 @@ textarea:focus {
         gap: 12px;
     }
 
+    .topbar-search {
+        flex: 1 1 100%;
+        width: auto;
+    }
+
+    .table--movements .col-nota,
+    .table--movements .col-usuario {
+        display: none;
+    }
+
+    .table .col-secondary {
+        display: none;
+    }    .cell-sub--mobile {
+        display: block;
+        margin-top: 4px;
+    }
+
+    .replenish-item {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+            "main stock"
+            "deficit action";
+        row-gap: 10px;
+        padding: 14px 17px;
+    }
+
+    .replenish-main {
+        grid-area: main;
+    }
+
+    .replenish-stock {
+        grid-area: stock;
+        justify-self: end;
+    }
+
+    .replenish-deficit {
+        grid-area: deficit;
+        justify-self: start;
+    }
+
+    .replenish-item > .btn {
+        grid-area: action;
+        justify-self: end;
+    }
+
     .metric-card {
         padding: 17px;
     }
@@ -1803,12 +2011,26 @@ textarea:focus {
     }
 
     .topbar-actions {
+        display: flex;
+        flex-wrap: wrap;
         justify-content: flex-start;
         width: 100%;
+        margin-left: 0;
     }
 
     .filters {
+        flex-wrap: wrap;
         justify-content: stretch;
+        width: 100%;
+    }
+
+    .filters--catalog {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .filters--catalog .search-input {
         width: 100%;
     }
 
@@ -1816,12 +2038,14 @@ textarea:focus {
         flex-basis: 100%;
     }
 
-    .filters select {
+    /* Solo en el filtro del catálogo (flex). En movimientos los campos son
+       columnas flex: un flex-basis aquí se aplicaría como alto. */
+    .filters--catalog select {
         flex: 1 1 150px;
         min-width: 0;
     }
 
-    .filters .btn {
+    .filters--catalog .btn {
         flex: 0 0 auto;
     }
 
@@ -1862,12 +2086,12 @@ textarea:focus {
     .product-avatar {
         width: 48px;
         height: 48px;
-        border-radius: 13px;
-        font-size: 19px;
+        border-radius: 14px;
+        font-size: 20px;
     }
 
     .product-hero h2 {
-        font-size: 19px;
+        font-size: 20px;
     }
 
     .hero-stats {
@@ -1900,8 +2124,8 @@ textarea:focus {
         flex: 1 1 auto;
     }
 
-    .cache-chip {
-        order: -1;
+    .table .col-tipo {
+        display: none;
     }
 
     .filters--movements {
@@ -1918,7 +2142,7 @@ textarea:focus {
     }
 
     .auth-heading h1 {
-        font-size: 22px;
+        font-size: 21px;
     }
 
     .hero-stat {

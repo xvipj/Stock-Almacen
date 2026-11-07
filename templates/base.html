@@ -24,18 +24,21 @@
             <span class="nav-label">General</span>
 
             <a class="nav-link {% if request.resolver_match.app_name == 'dashboard' %}is-active{% endif %}"
+               {% if request.resolver_match.app_name == 'dashboard' %}aria-current="page"{% endif %}
                href="{% url 'dashboard:home' %}">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
                 <span>Dashboard</span>
             </a>
 
             <a class="nav-link {% if request.resolver_match.app_name == 'catalog' %}is-active{% endif %}"
+               {% if request.resolver_match.app_name == 'catalog' %}aria-current="page"{% endif %}
                href="{% url 'catalog:product_list' %}">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></svg>
                 <span>Catálogo</span>
             </a>
 
             <a class="nav-link {% if request.resolver_match.app_name == 'inventory' %}is-active{% endif %}"
+               {% if request.resolver_match.app_name == 'inventory' %}aria-current="page"{% endif %}
                href="{% url 'inventory:movement_list' %}">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16v12H4z"/><path d="M3 4h18v4H3zM9 12h6"/></svg>
                 <span>Inventario</span>
@@ -71,11 +74,20 @@
     <div class="main">
         <header class="topbar">
             <div class="topbar-heading">
-                <p class="eyebrow">{% block eyebrow %}Panel de gestión{% endblock %}</p>
+                {% block eyebrow %}<p class="eyebrow">Panel de gestión</p>{% endblock %}
                 <h1>{% block page_title %}Dashboard{% endblock %}</h1>
                 <p class="page-subtitle">{% block page_subtitle %}Resumen general de tu almacén.{% endblock %}</p>
             </div>
             <div class="topbar-actions">
+                {% if request.resolver_match.url_name != 'product_list' %}
+                    <form method="get" action="{% url 'catalog:product_list' %}" class="topbar-search" role="search">
+                        <div class="search-input">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+                            <label class="sr-only" for="busqueda-global">Buscar producto o SKU</label>
+                            <input id="busqueda-global" type="search" name="q" placeholder="Buscar producto o SKU">
+                        </div>
+                    </form>
+                {% endif %}
                 {% block header_actions %}{% endblock %}
             </div>
         </header>
@@ -96,7 +108,7 @@
         </main>
 
         <footer class="app-footer">
-            Stock Almacén · MVP de inventario con Django
+            Stock Almacén · Control de inventario
         </footer>
     </div>
 </div>

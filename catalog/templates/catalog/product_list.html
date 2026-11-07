@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Catálogo · Stock Almacén{% endblock %}
-{% block eyebrow %}Catálogo{% endblock %}
+{% block eyebrow %}<p class="eyebrow">Catálogo</p>{% endblock %}
 {% block page_title %}Productos{% endblock %}
 {% block page_subtitle %}Administra tu catálogo, sus variantes y existencias.{% endblock %}
 
@@ -20,7 +20,7 @@
             <p>{{ total_resultados }} resultado{{ total_resultados|pluralize:"s" }} en el catálogo.</p>
         </div>
 
-        <form method="get" class="filters">
+        <form method="get" class="filters filters--catalog">
             <div class="search-input">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
                 <input type="search" name="q" value="{{ busqueda }}" placeholder="Buscar nombre, SKU o marca" aria-label="Buscar productos">
@@ -41,16 +41,17 @@
     {% if productos %}
         <div class="table-wrap">
             <table class="table">
+                <caption class="sr-only">Listado de productos del catálogo</caption>
                 <thead>
                     <tr>
-                        <th>Producto</th>
-                        <th>SKU</th>
-                        <th>Categoría</th>
-                        <th class="num">Variantes</th>
-                        <th class="num">Stock</th>
-                        <th class="num">Precio</th>
-                        <th>Estado</th>
-                        <th class="actions-col">Acciones</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col" class="col-secondary">SKU</th>
+                        <th scope="col" class="col-secondary">Categoría</th>
+                        <th scope="col" class="num col-secondary">Variantes</th>
+                        <th scope="col" class="num">Stock</th>
+                        <th scope="col" class="num col-secondary">Precio</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col" class="actions-col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,15 +61,15 @@
                                 <a class="cell-title" href="{{ producto.get_absolute_url }}">{{ producto.nombre }}</a>
                                 <span class="cell-sub">{{ producto.marca|default:"Sin marca" }}</span>
                             </td>
-                            <td><span class="code">{{ producto.sku }}</span></td>
-                            <td>{{ producto.categoria.nombre }}</td>
-                            <td class="num">{{ producto.variantes.all|length }}</td>
+                            <td class="col-secondary"><span class="code">{{ producto.sku }}</span></td>
+                            <td class="col-secondary">{{ producto.categoria.nombre }}</td>
+                            <td class="num col-secondary">{{ producto.variantes.all|length }}</td>
                             <td class="num">
                                 <span class="stock-pill {% if producto.tiene_stock_bajo %}stock-pill--low{% endif %}">
                                     {{ producto.stock_total }}
                                 </span>
                             </td>
-                            <td class="num">$ {{ producto.precio|floatformat:2 }}</td>
+                            <td class="num col-secondary">$ {{ producto.precio|floatformat:2 }}</td>
                             <td>
                                 {% if producto.activo %}
                                     <span class="badge badge--success">Activo</span>
@@ -78,7 +79,7 @@
                             </td>
                             <td class="actions-col">
                                 <a class="btn btn-ghost btn-sm" href="{{ producto.get_absolute_url }}">Ver</a>
-                                <a class="btn btn-ghost btn-sm" href="{% url 'catalog:product_update' producto.pk %}">Editar</a>
+                                <a class="btn btn-ghost btn-sm col-secondary" href="{% url 'catalog:product_update' producto.pk %}">Editar</a>
                             </td>
                         </tr>
                     {% endfor %}

@@ -13,7 +13,7 @@ Run from the repo root in PowerShell. The project venv exists at `venv/` (gitign
 .\venv\Scripts\python.exe manage.py test
 ```
 
-Run that order before finishing: system check, migration drift check, tests. Current baseline is 8 passing tests in `catalog/tests.py` and `inventory/tests.py`.
+Run that order before finishing: system check, migration drift check, tests. Current baseline is 12 passing tests in `catalog/tests.py`, `inventory/tests.py`, and `dashboard/tests.py`.
 
 Single test / single app:
 
